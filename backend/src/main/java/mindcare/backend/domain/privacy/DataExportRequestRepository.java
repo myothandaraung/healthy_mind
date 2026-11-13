@@ -1,0 +1,9 @@
+package mindcare.backend.domain.privacy;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.UUID;
+
+@Repository
+public interface DataExportRequestRepository extends JpaRepository<DataExportRequest, UUID> {
+}

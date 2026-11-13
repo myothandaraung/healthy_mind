@@ -1,0 +1,1 @@
+ALTER TABLE mood_entries ALTER COLUMN mood_level TYPE INTEGER;
