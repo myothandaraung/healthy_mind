@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { BookHeart, Flower2, HeartHandshake, LayoutDashboard, ListChecks, LogOut, NotebookPen, Settings2, Sparkles } from 'lucide-react'
+import { BarChart3, BookHeart, Flower2, HeartHandshake, Languages, LayoutDashboard, ListChecks, LogOut, NotebookPen, Settings2, Sparkles } from 'lucide-react'
 import { useAuth } from '@/features/auth'
 import { useTranslation } from '@/i18n'
 
@@ -10,6 +10,8 @@ const ITEMS = [
   { to: '/goals', key: 'app.nav.goals', icon: ListChecks },
   { to: '/relax', key: 'app.nav.relax', icon: Sparkles },
   { to: '/wellness', key: 'app.nav.learn', icon: BookHeart },
+  { to: '/progress', key: 'app.nav.progress', icon: BarChart3 },
+  { to: '/language', key: 'app.nav.language', icon: Languages },
   { to: '/settings', key: 'app.nav.settings', icon: Settings2 },
 ]
 
@@ -29,7 +31,7 @@ export default function DesktopNav() {
       </div>
       <div className="border-t border-[#e4ebe8] p-4">
         <NavLink to="/get-help" className="mb-2 flex items-center gap-3 rounded-button border border-[#efcfd1] bg-[#fff2f1] px-4 py-3 text-sm font-semibold text-[#8b4650] hover:bg-[#fce7e6]"><HeartHandshake size={18} />{t('app.nav.getHelp')}</NavLink>
-        <button onClick={logout} className="flex w-full items-center gap-3 rounded-button px-4 py-3 text-sm text-gray-500 hover:bg-[#f0f4f2] hover:text-brand-slate-dark"><LogOut size={18} />{t('auth.signOut')}</button>
+        <button onClick={logout} className="flex w-full items-center gap-3 rounded-button px-4 py-3 text-sm text-gray-500 hover:bg-[#f0f4f2] hover:text-brand-slate-dark"><LogOut size={18} />{t('auth.logout')}</button>
       </div>
     </nav>
   )

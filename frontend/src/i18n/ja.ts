@@ -12,6 +12,7 @@ export default {
       progress: '進捗',
       getHelp: '支援を求める',
       settings: '設定',
+      language: '言語',
     },
     mobile: {
       home: 'ホーム',
@@ -60,7 +61,7 @@ export default {
     sendRecovery: '復旧リンクを送信',
     register: 'アカウント作成',
     login: 'サインイン',
-    logout: 'サインアウト',
+    logout: 'ログアウト',
     forgotPassword: 'パスワードをお忘れですか？',
     email: 'メールアドレス',
     password: 'パスワード',
@@ -251,6 +252,10 @@ export default {
     rememberTitle: '覚えておきたいこと',
     rememberBody: '前向きに考えることは、痛みを否定したり、すべてが順調なふりをすることではありません。難しさを認めながら、選択肢や支え、穏やかな瞬間にも気づくことです。',
   },
+  progress: {
+    eyebrow: '自分の傾向を確認するプライベートな画面', title: 'マイ進捗', subtitle: '最近の記録を優しく振り返ります。傾向は情報であり、点数や診断ではありません。', averageMood: '平均気分・30日間', activeDays: '記録した日・30日間', moodEntries: '気分記録・30日間', journalEntries: 'ジャーナル総数', sevenDays: '過去7日間', chartLabel: '過去7日間の各日の平均気分レベル', commonEmotions: 'よく記録した感情', noEmotions: '気分記録に感情タグを追加すると、ここで傾向を確認できます。', note: '数値が低いことや習慣が途切れることは失敗ではありません。状況全体を考え、変化が心配な場合は資格のある専門家に相談してください。',
+  },
+  more: { title: 'その他のツール', subtitle: 'ケア、学習、進捗、支援、アカウントの追加機能を確認できます。', languageHelp: 'MindCare全体で使用する言語を選択します。' },
   settings: {
     timezoneHelp: '日時は選択したタイムゾーンで表示されます。',
     title: '設定',

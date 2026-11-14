@@ -77,9 +77,8 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <Card className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
-        <div className="col-span-1 md:col-span-2">
-          <h2 className="text-lg font-semibold mb-3">{t('dashboard.prompt')}</h2>
+      <Card>
+          <h2 className="mb-3 text-lg font-semibold">{t('dashboard.prompt')}</h2>
           <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-5">
             {[
               { v: 1, k: 'mood.levels.1' },
@@ -94,55 +93,54 @@ export default function DashboardPage() {
             ))}
           </div>
           <p className="text-xs text-gray-500">{t('dashboard.empty')}</p>
-        </div>
+      </Card>
 
-        <div>
-          <h2 className="text-lg font-semibold mb-3">{t('dashboard.chart')}</h2>
-          <div className="h-48 flex items-end gap-1 border-b border-gray-200 pb-2">
+      <div className="grid gap-4 lg:grid-cols-[1.4fr_.6fr]">
+        <Card>
+          <h2 className="mb-3 text-lg font-semibold">{t('dashboard.chart')}</h2>
+          {entries.length === 0 ? <div className="grid min-h-32 place-items-center rounded-button border border-dashed border-[#d6e0dc] bg-[#f8faf8] px-4 text-center"><div><Flower2 className="mx-auto mb-2 h-6 w-6 text-brand-sage" aria-hidden="true" /><p className="text-sm text-gray-500">{t('dashboard.empty')}</p></div></div> : <div className="flex h-40 items-end gap-2 border-b border-[#e1e8e4] pb-2">
             {[5, 4, 3, 2, 1, 0].map((day) => {
               const target = new Date(Date.now() - day * 86400000).toDateString()
               const entry = entries.find((e) => new Date(e.occurred_at).toDateString() === target)
               const height = entry ? Math.max(20, (entry.mood_level / 5) * 100) : 0
               return (
-                <div key={day} className="flex flex-col items-center gap-1">
+                <div key={day} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
+                  <span className="text-[11px] font-medium text-brand-slate">{entry ? entry.mood_level : '—'}</span>
                   <div
-                    className="w-full bg-brand-lavender rounded-t-button transition-colors"
-                    style={{ height: `${height}%` }}
+                    className="w-full max-w-12 rounded-t-lg bg-brand-sage transition-all"
+                    style={{ height: entry ? `${Math.max(12, height * 0.72)}%` : '3px' }}
                   />
-                  <span className="text-xs text-gray-500">{entry ? entry.mood_level : '—'}</span>
+                  <span className="text-[10px] text-gray-500">{new Date(Date.now() - day * 86400000).toLocaleDateString(undefined, { weekday: 'short' })}</span>
                 </div>
               )
             })}
-          </div>
-          <p className="text-xs text-gray-500 mt-2">{t('mood.chartAlt')}</p>
-        </div>
+          </div>}
+          <p className="mt-2 text-xs text-gray-500">{t('mood.chartAlt')}</p>
+        </Card>
 
-        <div className="col-span-1 md:col-span-2">
-          <h2 className="text-lg font-semibold mb-3">{t('dashboard.activity')}</h2>
-          <Button variant="outline" className="w-full flex items-center gap-2" onClick={() => navigate('/relax')}>
-            {t('relax.startBreathing')}
+        <Card className="flex flex-col justify-between bg-[#f6f2e8]">
+          <div><span className="mb-4 grid h-11 w-11 place-items-center rounded-2xl bg-white text-brand-slate"><Sparkles className="h-5 w-5" aria-hidden="true" /></span><h2 className="text-lg font-semibold">{t('dashboard.activity')}</h2><p className="mt-2 text-sm leading-6 text-gray-600">{t('home.relaxBody')}</p></div>
+          <Button className="mt-5 w-full" onClick={() => navigate('/relax')}>
+            {t('dashboard.startBreathing')}
           </Button>
-        </div>
+        </Card>
+      </div>
 
-        <div className="col-span-1 md:col-span-2">
-          <h2 className="text-lg font-semibold mb-3">{t('dashboard.journal')}</h2>
+        <Card>
+          <div className="mb-3 flex items-center justify-between gap-3"><h2 className="text-lg font-semibold">{t('dashboard.journal')}</h2><Button variant="ghost" size="sm" onClick={() => navigate('/journal')}>{t('dashboard.writeEntry')}</Button></div>
           {journalList.length === 0 ? (
-            <p className="text-sm text-gray-500">{t('journal.empty')}</p>
+            <p className="rounded-button bg-[#f8faf8] p-5 text-center text-sm text-gray-500">{t('journal.empty')}</p>
           ) : (
             <ul className="space-y-2">
               {journalList.slice(0, 3).map((entry) => (
-                <li key={entry.id} className="flex items-center justify-between p-2 rounded-button bg-gray-50/50 hover:bg-gray-100/50 transition-colors cursor-pointer">
+                <li key={entry.id} onClick={() => navigate('/journal')} className="flex cursor-pointer flex-col gap-1 rounded-button bg-[#f8faf8] p-3 transition-colors hover:bg-[#edf3f0] sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-sm truncate">{entry.title ?? t('journal.editor')}</span>
                   <span className="text-xs text-gray-500">{formatLocal(entry.created_at, 'UTC', 'PPp')}</span>
                 </li>
               ))}
             </ul>
           )}
-          <Button variant="ghost" className="w-full text-left mt-2" onClick={() => navigate('/journal')}>
-            {t('dashboard.writeEntry')}
-          </Button>
-        </div>
-      </Card>
+        </Card>
 
       <Card className="border-[#efd5d3] bg-[#fff5f3] p-6 text-[#8a4650]">
         <h2 className="font-semibold mb-1">{t('dashboard.needSupport')}</h2>

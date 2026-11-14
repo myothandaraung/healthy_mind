@@ -12,6 +12,9 @@ import { SupportPage } from '@/features/support'
 import { SettingsPage } from '@/features/settings'
 import { WellnessPage } from '@/features/wellness'
 import { GentleGoalsPage } from '@/features/goals'
+import { ProgressPage } from '@/features/progress'
+import { MorePage } from '@/features/more'
+import { LanguagePage } from '@/features/language'
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +33,9 @@ export const router = createBrowserRouter([
       { path: 'wellness', element: <WellnessPage /> },
       { path: 'settings', element: <SettingsPage /> },
       { path: 'goals', element: <GentleGoalsPage /> },
+      { path: 'progress', element: <ProgressPage /> },
+      { path: 'more', element: <MorePage /> },
+      { path: 'language', element: <LanguagePage /> },
     ],
   },
 ])

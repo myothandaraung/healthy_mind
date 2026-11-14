@@ -12,6 +12,7 @@ export default {
       progress: 'My Progress',
       getHelp: 'Get Help',
       settings: 'Settings',
+      language: 'Language',
     },
     mobile: {
       home: 'Home',
@@ -60,7 +61,7 @@ export default {
     sendRecovery: 'Send recovery link',
     register: 'Create account',
     login: 'Sign in',
-    logout: 'Sign out',
+    logout: 'Log out',
     forgotPassword: 'Forgot password?',
     email: 'Email',
     password: 'Password',
@@ -287,6 +288,10 @@ export default {
     rememberTitle: 'A helpful reminder',
     rememberBody: 'Positive thinking does not mean denying pain or pretending everything is fine. It can mean making room for difficulty while noticing choices, support, and moments of steadiness.',
   },
+  progress: {
+    eyebrow: 'A private view of your patterns', title: 'My progress', subtitle: 'Review recent check-ins gently. Trends are information, not a score or diagnosis.', averageMood: 'Average mood · 30 days', activeDays: 'Active days · 30 days', moodEntries: 'Mood check-ins · 30 days', journalEntries: 'Total journal entries', sevenDays: 'Last 7 days', chartLabel: 'Average mood level for each of the last seven days', commonEmotions: 'Common emotion tags', noEmotions: 'Add emotion tags to mood check-ins to see patterns here.', note: 'A lower number or an interrupted routine is not failure. Consider the wider context and seek qualified support if changes concern you.',
+  },
+  more: { title: 'More tools', subtitle: 'Explore additional care, learning, progress, support, and account options.', languageHelp: 'Choose the language used throughout MindCare.' },
   settings: {
     timezoneHelp: 'Timestamps display in your selected timezone.',
     title: 'Settings',

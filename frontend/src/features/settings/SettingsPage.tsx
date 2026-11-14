@@ -121,7 +121,7 @@ export default function SettingsPage() {
       </form>
 
       <Button variant="ghost" className="w-full text-red-600" onClick={logout}>
-        {t('auth.signOut')}
+        {t('auth.logout')}
       </Button>
     </div>
   )

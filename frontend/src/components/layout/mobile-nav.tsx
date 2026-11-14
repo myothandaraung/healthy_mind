@@ -16,7 +16,7 @@ export default function MobileNav() {
       <div className="flex">
         {ITEMS.map((item) => <NavLink key={item.key} to={item.to} className={({ isActive }) => `flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-button px-0.5 py-2 text-[10px] transition-colors sm:px-1 sm:text-[11px] ${isActive ? 'bg-[#e7f0ec] font-semibold text-brand-slate' : 'text-gray-500 hover:bg-[#f0f4f2] hover:text-brand-slate'}`}><item.icon size={19} /><span className="max-w-full truncate">{t(item.key)}</span></NavLink>)}
         <NavLink to="/get-help" className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-button px-0.5 py-2 text-[10px] text-[#a24e59] hover:bg-[#fff2f1] sm:px-1 sm:text-[11px]"><HeartHandshake size={19} /><span className="max-w-full truncate">{t('app.mobile.getHelp')}</span></NavLink>
-        <NavLink to="/settings" className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-button px-0.5 py-2 text-[10px] text-gray-500 hover:bg-[#f0f4f2] hover:text-brand-slate sm:px-1 sm:text-[11px]"><Menu size={19} /><span className="max-w-full truncate">{t('app.mobile.more')}</span></NavLink>
+        <NavLink to="/more" className={({ isActive }) => `flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-button px-0.5 py-2 text-[10px] sm:px-1 sm:text-[11px] ${isActive ? 'bg-[#e7f0ec] font-semibold text-brand-slate' : 'text-gray-500 hover:bg-[#f0f4f2] hover:text-brand-slate'}`}><Menu size={19} /><span className="max-w-full truncate">{t('app.mobile.more')}</span></NavLink>
       </div>
     </nav>
   )
