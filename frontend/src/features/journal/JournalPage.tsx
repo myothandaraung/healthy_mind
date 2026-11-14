@@ -204,7 +204,7 @@ export default function JournalPage() {
                   <Textarea className="min-h-[210px] sm:min-h-[270px]" label={t('journal.bodyLabel')} value={body} onChange={(e) => { setBody(e.target.value); setCopied(false) }} required />
                   <p className="mt-2 text-right text-xs text-gray-500" aria-live="polite">{t('journal.counts', { words: wordCount, characters: body.length })}</p>
                 </div>
-                <Input label={t('journal.tagsLabel')} placeholder="calm, work, sleep" value={tags} onChange={(e) => setTags(e.target.value)} />
+                <Input label={t('journal.tagsLabel')} placeholder={t('journal.tagsPlaceholder')} value={tags} onChange={(e) => setTags(e.target.value)} />
                 {(createMutation.isError || updateMutation.isError) && <p className="text-sm text-red-600" role="alert">{t('errors.validation')}</p>}
               </div>
               <div className="flex justify-end gap-2 border-t border-brand-sage/25 bg-white/80 px-4 py-3 sm:px-5">

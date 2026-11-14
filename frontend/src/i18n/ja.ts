@@ -120,6 +120,7 @@ export default {
     titleLabel: 'タイトル（任意）',
     bodyLabel: '頭にあることを書きましょう',
     tagsLabel: 'タグ（カンマ区切り）',
+    tagsPlaceholder: '落ち着き、仕事、睡眠',
     save: 'エントリを保存',
     saved: 'エントリを保存しました。',
     deleted: 'エントリを削除しました。',

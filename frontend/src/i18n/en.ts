@@ -120,6 +120,7 @@ export default {
     titleLabel: 'Title (optional)',
     bodyLabel: "What's on your mind?",
     tagsLabel: 'Tags (comma-separated)',
+    tagsPlaceholder: 'calm, work, sleep',
     save: 'Save entry',
     saved: 'Entry saved.',
     deleted: 'Entry deleted.',
