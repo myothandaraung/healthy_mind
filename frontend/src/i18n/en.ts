@@ -156,6 +156,10 @@ export default {
       5: '1 thing you can taste',
     },
   },
+  bodyRelease: {
+    title: 'Body release', heading: 'A gentle full-body release', intro: 'Move through these areas slowly. Let each part soften without forcing a stretch or holding your breath.', safety: 'Stay within a comfortable range. Skip any movement that causes pain, dizziness, numbness, or discomfort.', markStep: 'Mark body-release step {{step}} complete', complete: 'Exercise complete. Pause and notice whether anything feels a little different.', reset: 'Reset steps',
+    steps: { 1: { title: 'Settle your feet', body: 'Place both feet on the floor and notice the support beneath them.' }, 2: { title: 'Soften your shoulders', body: 'Lift your shoulders slightly, then let them drop without pushing.' }, 3: { title: 'Relax your hands', body: 'Uncurl your fingers and rest your hands somewhere comfortable.' }, 4: { title: 'Release your face', body: 'Let your jaw loosen and soften the space around your eyes.' }, 5: { title: 'Pause with your breath', body: 'Take two or three natural breaths and allow your body to be still.' } },
+  },
   dashboard: {
     quickActions: 'Quick actions',
     quickActionsIntro: 'Choose what would support you right now.',
