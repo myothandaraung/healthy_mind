@@ -10,7 +10,7 @@ const HABIT_KEYS = ['pause', 'move', 'connect', 'unplug', 'reflect', 'sleep'] as
 const ROUTINE_KEYS = ['morning', 'workday', 'evening'] as const
 const OVERWHELMED_KEYS = ['ground', 'simplify', 'support'] as const
 const PROMPT_KEYS = ['need', 'control', 'kind', 'release'] as const
-const TAB_KEYS = ['everyday', 'stress', 'lowMood', 'anxiety'] as const
+const TAB_KEYS = ['everyday', 'stress', 'lowMood', 'anxiety', 'sleep', 'burnout', 'grief'] as const
 type WellnessTab = typeof TAB_KEYS[number]
 
 const VIDEO_BY_LANGUAGE = {
@@ -57,7 +57,7 @@ export default function WellnessPage() {
         <p className="text-gray-600 mt-3">{t('wellness.subtitle')}</p>
       </header>
 
-      <div role="tablist" aria-label={t('wellness.tabs.label')} className="grid grid-cols-2 sm:grid-cols-4 gap-2 rounded-card bg-white p-2 border border-gray-200">
+      <div role="tablist" aria-label={t('wellness.tabs.label')} className="flex gap-2 overflow-x-auto rounded-card border border-gray-200 bg-white p-2 sm:flex-wrap">
         {TAB_KEYS.map((tab) => (
           <button
             key={tab}
@@ -67,7 +67,7 @@ export default function WellnessPage() {
             aria-selected={activeTab === tab}
             aria-controls={`wellness-panel-${tab}`}
             onClick={() => setActiveTab(tab)}
-            className={`min-h-11 rounded-button px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-slate ${activeTab === tab ? 'bg-brand-slate text-white' : 'text-brand-slate hover:bg-gray-100'}`}
+            className={`min-h-11 shrink-0 rounded-button px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-slate ${activeTab === tab ? 'bg-brand-slate text-white' : 'text-brand-slate hover:bg-gray-100'}`}
           >
             {t(`wellness.tabs.${tab}`)}
           </button>
