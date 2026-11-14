@@ -10,13 +10,13 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', disabled, children, asChild, ...props }, ref) => {
     const base =
-      'inline-flex min-h-11 items-center justify-center rounded-button font-semibold tracking-[-0.01em] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-slate focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.97]'
+      'inline-flex min-h-11 items-center justify-center rounded-button font-semibold tracking-[-0.01em] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-slate focus-visible:ring-offset-2 focus-visible:ring-offset-brand-offwhite disabled:pointer-events-none disabled:opacity-50 active:translate-y-px'
     const variants: Record<string, string> = {
-      primary: 'bg-gradient-to-br from-[#2a8174] to-[#1d6359] text-white shadow-[0_10px_24px_-12px_rgba(35,107,96,0.65)] hover:-translate-y-0.5 hover:brightness-105',
-      secondary: 'bg-brand-lavender/80 text-[#393463] hover:bg-brand-lavender',
-      ghost: 'text-brand-slate hover:bg-brand-sage/15',
-      danger: 'bg-[#b34f5a] text-white shadow-sm hover:bg-[#963e49]',
-      outline: 'border border-brand-slate/20 bg-white/70 text-brand-slate shadow-sm hover:border-brand-slate/40 hover:bg-white',
+      primary: 'border border-[#1f5a52] bg-brand-slate text-white shadow-[0_8px_20px_-12px_rgba(39,104,95,0.8)] hover:-translate-y-0.5 hover:bg-[#205a52] hover:shadow-[0_12px_24px_-14px_rgba(39,104,95,0.9)]',
+      secondary: 'border border-[#d8d3e7] bg-brand-lavender/75 text-[#494361] hover:bg-brand-lavender',
+      ghost: 'text-brand-slate hover:bg-[#e9f1ed]',
+      danger: 'border border-[#9e4651] bg-[#ad5360] text-white shadow-sm hover:bg-[#984450]',
+      outline: 'border border-[#cbd9d4] bg-white/85 text-brand-slate shadow-[0_1px_2px_rgba(24,51,47,0.05)] hover:border-brand-sage hover:bg-[#f7fbf9]',
     }
     const sizes: Record<string, string> = {
       sm: 'px-3 py-1.5 text-sm',

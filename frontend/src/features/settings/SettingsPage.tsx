@@ -66,7 +66,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="max-w-md mx-auto py-6 space-y-6">
+    <div className="mx-auto max-w-md space-y-6 px-4 py-6 sm:px-6">
       <h1 className="text-2xl font-semibold">{t('settings.title')}</h1>
       <form onSubmit={handleSave} className="space-y-6">
         <Card padding="md">
@@ -76,7 +76,7 @@ export default function SettingsPage() {
             <select
               value={locale}
               onChange={(e) => setLocale(e.target.value)}
-              className="block w-full border border-gray-300 rounded-button bg-white px-3 py-2 text-sm"
+              className="mt-2 block min-h-12 w-full rounded-button border border-[#d6e0dc] bg-[#fdfdfb] px-4 py-3 text-sm focus:border-brand-slate focus:outline-none focus:ring-4 focus:ring-brand-sage/20"
             >
               {LOCALES.map((l) => (
                 <option key={l} value={l}>
@@ -90,8 +90,8 @@ export default function SettingsPage() {
 
         <Card padding="md">
           <h2 className="text-lg font-semibold mb-4">{t('settings.reminders')}</h2>
-          <div className="flex items-center gap-2">
-            <input id="reminders" type="checkbox" checked={reminders} onChange={(e) => setReminders(e.target.checked)} />
+          <div className="flex items-center gap-3 rounded-button border border-[#e1e8e4] bg-[#f8faf8] p-3">
+            <input id="reminders" className="h-4 w-4 shrink-0 accent-brand-slate" type="checkbox" checked={reminders} onChange={(e) => setReminders(e.target.checked)} />
             <label htmlFor="reminders" className="text-sm text-brand-slate-dark">{t('settings.remindersDesc')}</label>
           </div>
           <p className="text-xs text-gray-500">{t('settings.remindersOff')}</p>
@@ -109,8 +109,8 @@ export default function SettingsPage() {
           <p className="text-xs text-gray-500">{t('settings.deleteDesc')}</p>
         </Card>
 
-        <div className="flex items-center gap-2 pt-4">
-          <input id="consent" type="checkbox" checked={true} readOnly />
+        <div className="flex items-start gap-3 pt-4">
+          <input id="consent" className="mt-0.5 h-4 w-4 shrink-0 accent-brand-slate" type="checkbox" checked={true} readOnly />
           <label htmlFor="consent" className="text-sm">{t('settings.consent')}</label>
         </div>
         <Button type="submit" className="w-full" disabled={saving}>

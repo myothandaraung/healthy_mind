@@ -9,13 +9,13 @@ export function Card({ className, padding = 'md', children, ...props }: CardProp
   const paddingClasses: Record<string, string> = {
     none: '',
     sm: 'p-4',
-    md: 'p-6',
-    lg: 'p-8',
+    md: 'p-5 sm:p-6',
+    lg: 'p-6 sm:p-8',
   }
   return (
     <div
       className={cn(
-        'rounded-card border border-white/90 bg-white/80 shadow-[0_1px_2px_rgba(16,43,39,0.04),0_16px_40px_-28px_rgba(16,43,39,0.35)] backdrop-blur-xl transition-[transform,box-shadow,border-color] duration-300 hover:border-brand-sage/45 hover:shadow-[0_1px_2px_rgba(16,43,39,0.04),0_22px_55px_-30px_rgba(16,43,39,0.4)]',
+        'rounded-card border border-[#e1e8e4] bg-white/92 shadow-[0_1px_2px_rgba(24,51,47,0.04),0_12px_32px_-24px_rgba(24,51,47,0.3)] backdrop-blur-xl transition-[box-shadow,border-color] duration-300 hover:border-[#cbdcd5] hover:shadow-[0_1px_2px_rgba(24,51,47,0.04),0_18px_40px_-26px_rgba(24,51,47,0.35)]',
         paddingClasses[padding],
         className,
       )}

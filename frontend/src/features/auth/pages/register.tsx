@@ -47,15 +47,18 @@ export default function RegisterPage() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto py-10">
-      <h2 className="text-2xl font-semibold mb-2">{t('auth.register')}</h2>
-      <p className="text-sm text-gray-600 mb-6">{t('safety.notice')}</p>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <Card padding="lg" className="mx-auto w-full max-w-md border-[#dce6e2] bg-white/95 sm:p-10">
+      <div className="mb-8">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-slate">MindCare</p>
+        <h2 className="text-3xl font-semibold">{t('auth.register')}</h2>
+        <p className="mt-2 text-sm leading-6 text-gray-600">{t('safety.notice')}</p>
+      </div>
+      <form onSubmit={handleSubmit} className="space-y-5">
         <Input label={t('auth.email')} type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
         <Input label={t('auth.password')} type="password" required value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} />
         <Input label={t('auth.displayName')} value={form.display_name} onChange={(e) => setForm({ ...form, display_name: e.target.value })} />
-        <div className="flex items-center gap-2">
-          <input id="age" type="checkbox" checked={ageConfirmed} onChange={(e) => setAgeConfirmed(e.target.checked)} required />
+        <div className="flex items-center gap-3 rounded-button border border-[#e1e8e4] bg-[#f8faf8] p-3">
+          <input id="age" className="h-4 w-4 accent-brand-slate" type="checkbox" checked={ageConfirmed} onChange={(e) => setAgeConfirmed(e.target.checked)} required />
           <Label htmlFor="age" className="text-sm">{t('auth.ageConfirm')}</Label>
         </div>
         <p className="text-xs text-gray-500">{t('common.optional')} - {t('common.language')} / {t('common.timezone')} set in Settings.</p>

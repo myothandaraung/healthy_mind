@@ -125,10 +125,10 @@ export default function JournalPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto py-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="mx-auto max-w-5xl space-y-6 px-4 py-6 sm:px-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-xl font-semibold">{t('journal.title')}</h2>
-        <div className="flex gap-2"><Button variant="outline" onClick={exportEntries}>{t('settings.export')}</Button><Button onClick={() => { setEditingId(null); setTitle(''); setBody(''); setTags(''); setOpen(true) }}>{t('journal.newEntry')}</Button></div>
+        <div className="flex flex-wrap gap-2"><Button variant="outline" onClick={exportEntries}>{t('settings.export')}</Button><Button onClick={() => { setEditingId(null); setTitle(''); setBody(''); setTags(''); setOpen(true) }}>{t('journal.newEntry')}</Button></div>
       </div>
       <p className="text-gray-600">{t('journal.subtitle')}</p>
       <Input label={t('journal.search')} value={search} onChange={(e) => setSearch(e.target.value)} />

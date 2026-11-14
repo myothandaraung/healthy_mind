@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-lavender: #ddd9ff;
-  --color-brand-sage: #9bc7b7;
-  --color-brand-offwhite: #f6f8f7;
-  --color-brand-slate: #236b60;
-  --color-brand-slate-dark: #102b27;
+  --color-brand-lavender: #e6e3f2;
+  --color-brand-sage: #a8c8bd;
+  --color-brand-offwhite: #f7f6f2;
+  --color-brand-slate: #27685f;
+  --color-brand-slate-dark: #18332f;
 
-  --radius-card: 20px;
-  --radius-button: 12px;
+  --radius-card: 24px;
+  --radius-button: 14px;
 }
 
 html {
@@ -25,15 +25,16 @@ body {
   color: var(--color-brand-slate-dark);
   min-width: 320px;
   background-image:
-    radial-gradient(circle at 4% 0%, rgb(221 217 255 / 55%), transparent 30rem),
-    radial-gradient(circle at 100% 8%, rgb(155 199 183 / 35%), transparent 30rem),
-    linear-gradient(180deg, #fbfdfc 0%, #f2f6f4 100%);
+    radial-gradient(circle at 8% -8%, rgb(230 227 242 / 70%), transparent 32rem),
+    radial-gradient(circle at 100% 0%, rgb(205 225 217 / 58%), transparent 34rem),
+    linear-gradient(180deg, #fbfaf7 0%, #f4f6f3 58%, #f7f6f2 100%);
   background-attachment: fixed;
 }
 
 h1, h2, h3 {
   letter-spacing: -0.025em;
   text-wrap: balance;
+  color: var(--color-brand-slate-dark);
 }
 
 h1, h2 { font-weight: 700; }
@@ -58,6 +59,12 @@ p { text-wrap: pretty; }
 }
 
 main > div:not(.fixed) { animation: page-enter 320ms ease-out both; }
+
+button, input, textarea, select { font: inherit; }
+
+select {
+  color: var(--color-brand-slate-dark);
+}
 
 .sr-only {
   position: absolute;

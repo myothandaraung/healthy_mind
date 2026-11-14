@@ -30,11 +30,11 @@ export default function HomePage() {
       </header>
 
       <main>
-        <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-8 sm:px-6 lg:grid-cols-[1.08fr_.92fr] lg:pb-24 lg:pt-14">
+        <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-14 pt-5 sm:px-6 sm:pb-16 sm:pt-8 lg:grid-cols-[1.08fr_.92fr] lg:pb-24 lg:pt-14">
           <div>
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-sage/25 bg-white/65 px-4 py-2 text-sm font-medium text-brand-slate shadow-sm"><Sparkles size={16} />{t('wellness.eyebrow')}</div>
-            <h1 className="max-w-3xl text-5xl font-semibold leading-[1.04] text-brand-slate-dark sm:text-6xl lg:text-7xl">{t('app.tagline')}</h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">{t('safety.notice')}</p>
+            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.08] text-brand-slate-dark sm:text-6xl lg:text-7xl">{t('app.tagline')}</h1>
+            <p className="mt-5 max-w-xl text-base leading-7 text-gray-600 sm:mt-6 sm:text-lg sm:leading-8">{t('safety.notice')}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg"><Link to="/register">{t('auth.createAccount')}<ArrowRight size={18} className="ml-2" /></Link></Button>
               <Button variant="outline" asChild size="lg"><Link to="/wellness">{t('wellness.explore')}</Link></Button>
@@ -45,7 +45,7 @@ export default function HomePage() {
             <div className="absolute -inset-5 rounded-[40px] bg-gradient-to-br from-brand-lavender/65 to-brand-sage/50 blur-2xl" />
             <div className="relative overflow-hidden rounded-[36px] border border-white/80 bg-white/75 p-3 shadow-[0_35px_80px_-35px_rgba(35,51,46,0.5)]">
               <img src={hero} alt="" className="aspect-[4/4.4] w-full rounded-[28px] object-cover" />
-              <div className="absolute bottom-7 left-7 right-7 rounded-[22px] border border-white/80 bg-white/88 p-5 shadow-xl backdrop-blur-md">
+              <div className="absolute bottom-5 left-5 right-5 rounded-[20px] border border-white/80 bg-white/90 p-4 shadow-xl backdrop-blur-md sm:bottom-7 sm:left-7 sm:right-7 sm:rounded-[22px] sm:p-5">
                 <div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-brand-lavender"><BookHeart size={19} /></span><div><p className="font-semibold">{t('wellness.title')}</p><p className="text-sm text-gray-600">{t('wellness.habitsIntro')}</p></div></div>
               </div>
             </div>

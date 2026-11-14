@@ -20,6 +20,7 @@ export default function Shell() {
   }
 
   const showAppNavigation = isAuthenticated && !['/', '/login', '/register', '/forgot-password'].includes(location.pathname)
+  const isAuthPage = ['/login', '/register', '/forgot-password'].includes(location.pathname)
   const showBackButton = location.pathname !== '/'
   const goBack = () => {
     if (location.key === 'default') navigate('/')
@@ -45,16 +46,28 @@ export default function Shell() {
       {showAppNavigation ? (
         <>
           <DesktopNav />
-          <main className="flex-1 pb-28 md:pb-10 md:pl-64 overflow-x-auto">
+          <main className="min-w-0 flex-1 overflow-x-hidden pb-28 lg:pb-10 lg:pl-64">
             {backButton}
             <Outlet />
           </main>
           <MobileNav />
         </>
       ) : (
-        <main className="flex-1 min-h-0">
+        <main className="min-h-0 flex-1">
           {backButton}
-          <Outlet />
+          {isAuthPage ? (
+            <div className="mx-auto grid min-h-[calc(100vh-92px)] max-w-6xl items-center gap-10 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,.9fr)_minmax(420px,.7fr)] lg:py-12">
+              <section className="hidden max-w-xl lg:block" aria-hidden="true">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-sage/35 bg-white/70 px-4 py-2 text-sm font-medium text-brand-slate shadow-sm">
+                  <span className="h-2 w-2 rounded-full bg-brand-slate" /> MindCare
+                </div>
+                <h1 className="text-5xl font-semibold leading-[1.08]">{t('app.tagline')}</h1>
+                <p className="mt-5 max-w-lg text-lg leading-8 text-gray-600">{t('safety.notice')}</p>
+                <div className="mt-10 h-2 w-32 rounded-full bg-gradient-to-r from-brand-sage to-brand-lavender" />
+              </section>
+              <Outlet />
+            </div>
+          ) : <Outlet />}
         </main>
       )}
     </div>

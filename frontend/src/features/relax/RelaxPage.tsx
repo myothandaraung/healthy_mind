@@ -53,7 +53,7 @@ export default function RelaxPage() {
     : 1
 
   return (
-    <div className="max-w-lg mx-auto py-6 space-y-6">
+    <div className="mx-auto max-w-lg space-y-6 px-4 py-6 sm:px-6">
       <h2 className="text-xl font-semibold">{t('relax.title')}</h2>
       <div className="flex gap-2 border-b border-gray-200 pb-2">
         <Button

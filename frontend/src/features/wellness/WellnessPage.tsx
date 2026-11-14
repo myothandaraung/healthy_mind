@@ -3,15 +3,22 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useTranslation } from '@/i18n'
 import { useState } from 'react'
-import { ExternalLink, PlayCircle } from 'lucide-react'
+import { Check, ExternalLink, PlayCircle, RotateCcw } from 'lucide-react'
 
 const REFLECTION_KEYS = ['enough', 'smallSteps', 'feelings', 'kindness', 'rest'] as const
 const HABIT_KEYS = ['pause', 'move', 'connect', 'unplug', 'reflect', 'sleep'] as const
 const ROUTINE_KEYS = ['morning', 'workday', 'evening'] as const
 const OVERWHELMED_KEYS = ['ground', 'simplify', 'support'] as const
 const PROMPT_KEYS = ['need', 'control', 'kind', 'release'] as const
+const SMALL_ACTION_KEYS = ['water', 'light', 'move', 'breathe', 'connect', 'tinyTask'] as const
 const TAB_KEYS = ['everyday', 'stress', 'lowMood', 'anxiety', 'sleep', 'burnout', 'grief'] as const
 type WellnessTab = typeof TAB_KEYS[number]
+
+function topicItemIndexes(topic: WellnessTab, section: 'notice' | 'now' | 'habits' | 'support') {
+  return section === 'now' && (topic === 'stress' || topic === 'lowMood')
+    ? [0, 1, 2, 3, 4, 5]
+    : [0, 1, 2]
+}
 
 const VIDEO_BY_LANGUAGE = {
   en: {
@@ -46,14 +53,15 @@ const VIDEO_BY_LANGUAGE = {
 export default function WellnessPage() {
   const { t, i18n } = useTranslation()
   const [activeTab, setActiveTab] = useState<WellnessTab>('everyday')
+  const [completedActions, setCompletedActions] = useState<string[]>([])
   const language = i18n.resolvedLanguage?.split('-')[0] as keyof typeof VIDEO_BY_LANGUAGE
   const video = VIDEO_BY_LANGUAGE[language] ?? VIDEO_BY_LANGUAGE.en
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
+    <div className="mx-auto max-w-4xl space-y-8 px-4 py-6 sm:px-6 sm:py-8">
       <header className="text-center max-w-2xl mx-auto">
         <p className="text-sm font-medium text-brand-slate">{t('wellness.eyebrow')}</p>
-        <h1 className="text-3xl font-semibold mt-2">{t('wellness.title')}</h1>
+        <h1 className="mt-2 text-2xl font-semibold sm:text-3xl">{t('wellness.title')}</h1>
         <p className="text-gray-600 mt-3">{t('wellness.subtitle')}</p>
       </header>
 
@@ -85,7 +93,7 @@ export default function WellnessPage() {
               <Card key={section} padding="md">
                 <h3 className="font-semibold">{t(`wellness.topics.sections.${section}`)}</h3>
                 <ul className="mt-3 space-y-2 text-sm text-gray-600 list-disc pl-5">
-                  {[0, 1, 2].map((item) => <li key={item}>{t(`wellness.topics.${activeTab}.${section}.${item}`)}</li>)}
+                  {topicItemIndexes(activeTab, section).map((item) => <li key={item}>{t(`wellness.topics.${activeTab}.${section}.${item}`)}</li>)}
                 </ul>
               </Card>
             ))}
@@ -95,6 +103,32 @@ export default function WellnessPage() {
       )}
 
       {activeTab === 'everyday' && <div id="wellness-panel-everyday" role="tabpanel" aria-labelledby="wellness-tab-everyday" className="space-y-8">
+
+      <section aria-labelledby="small-actions-title">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 id="small-actions-title" className="text-xl font-semibold">{t('wellness.smallActions.title')}</h2>
+            <p className="mt-1 text-sm text-gray-600">{t('wellness.smallActions.intro')}</p>
+          </div>
+          {completedActions.length > 0 && (
+            <Button type="button" variant="ghost" size="sm" onClick={() => setCompletedActions([])}>
+              <RotateCcw className="mr-1.5 h-4 w-4" aria-hidden="true" />{t('wellness.smallActions.reset')}
+            </Button>
+          )}
+        </div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {SMALL_ACTION_KEYS.map((key) => {
+            const completed = completedActions.includes(key)
+            return (
+              <button key={key} type="button" aria-pressed={completed} onClick={() => setCompletedActions((current) => completed ? current.filter((item) => item !== key) : [...current, key])} className={`group flex min-h-32 items-start gap-3 rounded-card border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-slate ${completed ? 'border-brand-sage bg-[#eaf3ef]' : 'border-[#e1e8e4] bg-white/90 hover:border-brand-sage hover:bg-white'}`}>
+                <span className={`mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border transition ${completed ? 'border-brand-slate bg-brand-slate text-white' : 'border-[#cbd9d4] bg-white text-transparent group-hover:border-brand-sage'}`}><Check className="h-4 w-4" aria-hidden="true" /></span>
+                <span><span className="block font-semibold text-brand-slate-dark">{t(`wellness.smallActions.items.${key}.title`)}</span><span className="mt-1 block text-sm leading-6 text-gray-600">{t(`wellness.smallActions.items.${key}.body`)}</span></span>
+              </button>
+            )
+          })}
+        </div>
+        <p className="mt-3 text-sm text-brand-slate" role="status" aria-live="polite">{completedActions.length > 0 ? t('wellness.smallActions.progress', { count: completedActions.length }) : t('wellness.smallActions.none')}</p>
+      </section>
 
       <section aria-labelledby="positive-thinking-title">
         <h2 id="positive-thinking-title" className="text-xl font-semibold mb-4">{t('wellness.positiveTitle')}</h2>

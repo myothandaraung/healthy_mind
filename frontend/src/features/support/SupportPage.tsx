@@ -34,34 +34,38 @@ export default function SupportPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto py-6 space-y-6">
+    <div className="mx-auto max-w-2xl space-y-6 px-4 py-6 sm:px-6">
       <h1 className="text-2xl font-semibold">{t('support.title')}</h1>
       <p className="text-gray-600">{t('support.subtitle')}</p>
 
       <Card padding="md">
         <p className="text-sm text-gray-600 mb-4">{t('safety.notice')}</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <Label>{t('support.country')}</Label>
-          <select
-            value={country}
-            onChange={(e) => { setCountry(e.target.value); setLocale(COUNTRIES.find((c) => c.code === e.target.value)?.locales[0] || 'en'); load() }}
-            className="block w-full border border-gray-300 rounded-button bg-white px-3 py-2 text-sm"
-          >
-            {COUNTRIES.map((c) => (
-              <option key={c.code} value={c.code}>{c.label}</option>
-            ))}
-          </select>
-          <Label>{t('common.language')}</Label>
-          <select
-            value={locale}
-            onChange={(e) => { setLocale(e.target.value); load() }}
-            className="block w-full border border-gray-300 rounded-button bg-white px-3 py-2 text-sm"
-          >
-            {COUNTRIES.find((c) => c.code === country)?.locales.map((l) => (
-              <option key={l} value={l}>{l.toUpperCase()}</option>
-            ))}
-          </select>
-          <div className="flex items-end">
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label>{t('support.country')}</Label>
+            <select
+              value={country}
+              onChange={(e) => { setCountry(e.target.value); setLocale(COUNTRIES.find((c) => c.code === e.target.value)?.locales[0] || 'en'); load() }}
+              className="block min-h-12 w-full rounded-button border border-[#d6e0dc] bg-[#fdfdfb] px-4 py-3 text-sm focus:border-brand-slate focus:outline-none focus:ring-4 focus:ring-brand-sage/20"
+            >
+              {COUNTRIES.map((c) => (
+                <option key={c.code} value={c.code}>{c.label}</option>
+              ))}
+            </select>
+          </div>
+          <div className="space-y-2">
+            <Label>{t('common.language')}</Label>
+            <select
+              value={locale}
+              onChange={(e) => { setLocale(e.target.value); load() }}
+              className="block min-h-12 w-full rounded-button border border-[#d6e0dc] bg-[#fdfdfb] px-4 py-3 text-sm focus:border-brand-slate focus:outline-none focus:ring-4 focus:ring-brand-sage/20"
+            >
+              {COUNTRIES.find((c) => c.code === country)?.locales.map((l) => (
+                <option key={l} value={l}>{l.toUpperCase()}</option>
+              ))}
+            </select>
+          </div>
+          <div className="sm:col-span-2">
             <Button onClick={load} disabled={loading} className="w-full">
               {loading ? t('common.loading') : t('support.refresh')}
             </Button>
@@ -77,13 +81,13 @@ export default function SupportPage() {
         ) : (
           <div className="space-y-3">
             {resources.map((r) => (
-              <div key={r.id} className="p-3 rounded-button border border-gray-200 bg-white flex items-center justify-between">
-                <div>
+              <div key={r.id} className="flex flex-col gap-4 rounded-button border border-gray-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0">
                   <div className="font-medium text-gray-800">{r.name}</div>
                   <div className="text-xs text-gray-500">{r.resource_type}</div>
                   {r.phone && <div className="text-sm">{r.phone}</div>}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-3 sm:justify-end">
                   {r.contact_url && (
                     <a href={r.contact_url} target="_blank" rel="noopener" className="text-xs text-brand-slate hover:underline">
                       {t('support.visitWebsite')}

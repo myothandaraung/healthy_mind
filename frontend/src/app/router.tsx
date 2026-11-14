@@ -11,6 +11,7 @@ import { RelaxPage } from '@/features/relax'
 import { SupportPage } from '@/features/support'
 import { SettingsPage } from '@/features/settings'
 import { WellnessPage } from '@/features/wellness'
+import { GentleGoalsPage } from '@/features/goals'
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: 'get-help', element: <SupportPage /> },
       { path: 'wellness', element: <WellnessPage /> },
       { path: 'settings', element: <SettingsPage /> },
+      { path: 'goals', element: <GentleGoalsPage /> },
     ],
   },
 ])

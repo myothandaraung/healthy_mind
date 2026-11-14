@@ -40,16 +40,16 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6 space-y-8 sm:px-6">
-      <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#174f47_0%,#236b60_55%,#425f70_100%)] px-6 py-8 text-white shadow-[0_28px_70px_-36px_rgba(16,43,39,0.75)] sm:px-9 sm:py-10">
-        <div className="absolute -right-12 -top-20 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
-        <div className="absolute -bottom-24 right-28 h-52 w-52 rounded-full bg-brand-lavender/20 blur-3xl" />
+      <div className="relative overflow-hidden rounded-[28px] border border-[#d6e4de] bg-[linear-gradient(135deg,#edf5f1_0%,#f8f7f2_58%,#eeeaf5_100%)] px-6 py-8 shadow-[0_24px_60px_-38px_rgba(24,51,47,0.45)] sm:px-9 sm:py-10">
+        <div className="absolute -right-12 -top-20 h-56 w-56 rounded-full bg-brand-sage/25 blur-2xl" />
+        <div className="absolute -bottom-24 right-28 h-52 w-52 rounded-full bg-brand-lavender/45 blur-3xl" />
         <div className="relative flex items-end justify-between gap-5">
           <div>
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-white/80 backdrop-blur"><Sparkles className="h-3.5 w-3.5" />{t('wellness.eyebrow')}</div>
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-sage/35 bg-white/65 px-3 py-1.5 text-xs font-medium text-brand-slate backdrop-blur"><Sparkles className="h-3.5 w-3.5" />{t('wellness.eyebrow')}</div>
             <h1 className="text-3xl font-bold tracking-[-0.035em] sm:text-4xl">{t('dashboard.welcome')}{user?.name ? `, ${user.name}` : ''}</h1>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-white/70 sm:text-base">{t('dashboard.quickActionsIntro')}</p>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-gray-600 sm:text-base">{t('dashboard.quickActionsIntro')}</p>
           </div>
-          <span className="hidden h-16 w-16 shrink-0 place-items-center rounded-2xl border border-white/15 bg-white/10 text-[#c9ede1] backdrop-blur sm:grid"><Flower2 className="h-7 w-7" /></span>
+          <span className="hidden h-16 w-16 shrink-0 place-items-center rounded-2xl border border-brand-sage/30 bg-white/65 text-brand-slate backdrop-blur sm:grid"><Flower2 className="h-7 w-7" /></span>
         </div>
       </div>
 
@@ -58,13 +58,13 @@ export default function DashboardPage() {
           <h2 id="quick-actions-title" className="text-xl font-semibold">{t('dashboard.quickActions')}</h2>
           <p className="mt-1 text-sm text-gray-600">{t('dashboard.quickActionsIntro')}</p>
         </div>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 min-[390px]:grid-cols-2 md:grid-cols-3">
           {quickActions.map(({ icon: Icon, title, description, path, tone }) => (
             <button
               key={path}
               type="button"
               onClick={() => navigate(path)}
-              className="group relative overflow-hidden rounded-card border border-white/90 bg-white/78 p-5 text-left shadow-[0_14px_35px_-28px_rgba(16,43,39,0.45)] backdrop-blur-xl transition hover:-translate-y-1 hover:border-brand-sage/45 hover:shadow-[0_22px_48px_-28px_rgba(16,43,39,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-slate"
+              className="group relative overflow-hidden rounded-card border border-white/90 bg-white/78 p-4 text-left shadow-[0_14px_35px_-28px_rgba(16,43,39,0.45)] backdrop-blur-xl transition hover:-translate-y-1 hover:border-brand-sage/45 hover:shadow-[0_22px_48px_-28px_rgba(16,43,39,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-slate sm:p-5"
             >
               <span className={`mb-3 grid h-10 w-10 place-items-center rounded-2xl ${tone} text-brand-slate transition-transform group-hover:scale-105`}>
                 <Icon className="h-5 w-5" aria-hidden="true" />
@@ -80,7 +80,7 @@ export default function DashboardPage() {
       <Card className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
         <div className="col-span-1 md:col-span-2">
           <h2 className="text-lg font-semibold mb-3">{t('dashboard.prompt')}</h2>
-          <div className="grid grid-cols-5 gap-2 mb-4">
+          <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-5">
             {[
               { v: 1, k: 'mood.levels.1' },
               { v: 2, k: 'mood.levels.2' },
@@ -124,12 +124,6 @@ export default function DashboardPage() {
           </Button>
         </div>
 
-        <div>
-          <h2 className="text-lg font-semibold mb-3">{t('dashboard.goals')}</h2>
-          <p className="text-sm text-gray-600">{t('dashboard.goalsSub')}</p>
-          <Button variant="ghost" className="w-full text-left" onClick={() => navigate('/journal')}>{t('dashboard.writeEntry')}</Button>
-        </div>
-
         <div className="col-span-1 md:col-span-2">
           <h2 className="text-lg font-semibold mb-3">{t('dashboard.journal')}</h2>
           {journalList.length === 0 ? (
@@ -150,7 +144,7 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <Card className="p-6 bg-red-50 border-red-100 text-red-700">
+      <Card className="border-[#efd5d3] bg-[#fff5f3] p-6 text-[#8a4650]">
         <h2 className="font-semibold mb-1">{t('dashboard.needSupport')}</h2>
         <p className="text-sm">{t('support.disclaimer')}</p>
         <Button variant="outline" className="w-full mt-3 border-red-200 text-red-700 hover:bg-red-100" onClick={() => navigate('/get-help')}>

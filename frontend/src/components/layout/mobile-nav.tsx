@@ -1,22 +1,22 @@
 import { NavLink } from 'react-router-dom'
-import { Flower2, HeartHandshake, Home, Menu, NotebookPen, Sparkles } from 'lucide-react'
+import { Flower2, HeartHandshake, Home, ListChecks, Menu, NotebookPen } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 
 const ITEMS = [
   { to: '/dashboard', key: 'app.mobile.home', icon: Home },
   { to: '/mood', key: 'app.mobile.mood', icon: Flower2 },
   { to: '/journal', key: 'app.mobile.journal', icon: NotebookPen },
-  { to: '/relax', key: 'app.mobile.relax', icon: Sparkles },
+  { to: '/goals', key: 'app.mobile.goals', icon: ListChecks },
 ]
 
 export default function MobileNav() {
   const { t } = useTranslation()
   return (
-    <nav className="fixed bottom-3 left-3 right-3 z-40 rounded-[20px] border border-white/15 bg-[#102b27]/94 p-2 text-white shadow-[0_20px_50px_-16px_rgba(16,43,39,0.7)] backdrop-blur-2xl md:hidden">
+    <nav className="fixed bottom-[max(.75rem,env(safe-area-inset-bottom))] left-2 right-2 z-40 rounded-[22px] border border-[#dce6e2] bg-white/94 p-1.5 text-brand-slate-dark shadow-[0_18px_45px_-18px_rgba(24,51,47,0.38)] backdrop-blur-2xl sm:left-3 sm:right-3 sm:p-2 lg:hidden">
       <div className="flex">
-        {ITEMS.map((item) => <NavLink key={item.key} to={item.to} className={({ isActive }) => `flex flex-1 flex-col items-center justify-center gap-1 rounded-button px-1 py-2 text-[11px] transition-colors ${isActive ? 'bg-white font-semibold text-brand-slate-dark' : 'text-white/55 hover:bg-white/10 hover:text-white'}`}><item.icon size={19} />{t(item.key)}</NavLink>)}
-        <NavLink to="/get-help" className="flex flex-1 flex-col items-center justify-center gap-1 rounded-button px-1 py-2 text-[11px] text-[#ffb8bf] hover:bg-white/10"><HeartHandshake size={19} />{t('app.mobile.getHelp')}</NavLink>
-        <NavLink to="/settings" className="flex flex-1 flex-col items-center justify-center gap-1 rounded-button px-1 py-2 text-[11px] text-white/55 hover:bg-white/10 hover:text-white"><Menu size={19} />{t('app.mobile.more')}</NavLink>
+        {ITEMS.map((item) => <NavLink key={item.key} to={item.to} className={({ isActive }) => `flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-button px-0.5 py-2 text-[10px] transition-colors sm:px-1 sm:text-[11px] ${isActive ? 'bg-[#e7f0ec] font-semibold text-brand-slate' : 'text-gray-500 hover:bg-[#f0f4f2] hover:text-brand-slate'}`}><item.icon size={19} /><span className="max-w-full truncate">{t(item.key)}</span></NavLink>)}
+        <NavLink to="/get-help" className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-button px-0.5 py-2 text-[10px] text-[#a24e59] hover:bg-[#fff2f1] sm:px-1 sm:text-[11px]"><HeartHandshake size={19} /><span className="max-w-full truncate">{t('app.mobile.getHelp')}</span></NavLink>
+        <NavLink to="/settings" className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-button px-0.5 py-2 text-[10px] text-gray-500 hover:bg-[#f0f4f2] hover:text-brand-slate sm:px-1 sm:text-[11px]"><Menu size={19} /><span className="max-w-full truncate">{t('app.mobile.more')}</span></NavLink>
       </div>
     </nav>
   )

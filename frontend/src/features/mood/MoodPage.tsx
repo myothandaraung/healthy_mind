@@ -133,8 +133,8 @@ export default function MoodPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-6 space-y-6">
-      <Card className="p-6">
+    <div className="mx-auto max-w-3xl space-y-6 px-4 py-6 sm:px-6">
+      <Card>
         <h2 className="text-xl font-semibold mb-2">{t('mood.title')}</h2>
         <p className="text-gray-600 mb-6">{t('mood.subtitle')}</p>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -168,7 +168,7 @@ export default function MoodPage() {
             required
             value={occurredAt}
             onChange={(e) => setOccurredAt(e.target.value)}
-            className="block w-full border border-gray-300 rounded-button bg-white px-3 py-2 text-sm"
+            className="block min-h-12 w-full rounded-button border border-[#d6e0dc] bg-[#fdfdfb] px-4 py-3 text-sm focus:border-brand-slate focus:outline-none focus:ring-4 focus:ring-brand-sage/20"
           />
           <Button type="submit" className="w-full" disabled={submitting || !moodLevel}>
             {submitting ? t('common.loading') : editingId ? t('common.save') : t('mood.save')}
@@ -183,10 +183,10 @@ export default function MoodPage() {
         )}
       </Card>
 
-      <Card className="p-6">
-        <div className="flex items-center justify-between mb-4">
+      <Card>
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-lg font-semibold">{t('mood.history')}</h2>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button size="sm" variant="ghost" disabled={isFetching} onClick={() => refetch()}>{isFetching ? t('common.loading') : t('mood.refresh')}</Button>
             <Button size="sm" variant="outline" disabled={!entries.length} onClick={exportMoodHistory}>{t('mood.export')}</Button>
           </div>
