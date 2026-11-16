@@ -23,7 +23,7 @@ export default function Shell() {
   const isAuthPage = ['/login', '/register', '/forgot-password'].includes(location.pathname)
   const showBackButton = location.pathname !== '/'
   const goBack = () => {
-    if (location.key === 'default') navigate('/')
+    if (location.pathname === '/login' || location.key === 'default') navigate('/')
     else navigate(-1)
   }
 
