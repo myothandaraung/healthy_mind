@@ -1,35 +1,28 @@
 package mindcare.backend.config;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
+import mindcare.backend.api.auth.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.crypto.SecretKey;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-  @Value("${auth.jwt.issuer-uri:https://example.supabase.co/auth/v1}")
-  private String issuerUri;
+  private final JwtUtil jwtUtil;
 
-  @Value("${auth.jwt.audience:authenticated}")
-  private String audience;
-
-  @Value("${auth.jwt.jwks-uri:https://example.supabase.co/auth/v1/.well-known/jwks.json}")
-  private String jwksUri;
+  public JwtAuthenticationFilter(JwtUtil jwtUtil) {
+    this.jwtUtil = jwtUtil;
+  }
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -41,15 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
     String token = header.substring(7);
     try {
-      // For MVP we validate the JWT structure and map the subject.
-      // Production should verify signature against Supabase JWKS endpoint.
-      SecretKey key = Keys.hmacShaKeyFor(("mindcare-dev-secret-do-not-use-in-production-change-me"
-          .getBytes(StandardCharsets.UTF_8)));
-      Claims claims = Jwts.parser()
-          .verifyWith(key)
-          .build()
-          .parseSignedClaims(token)
-          .getPayload();
+      Claims claims = jwtUtil.parse(token);
 
       String subject = claims.getSubject();
       String email = claims.get("email", String.class);

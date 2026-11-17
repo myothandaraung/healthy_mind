@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: mindcare-api
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/v1/activities
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: DB_HOST
+        fromDatabase:
+          name: mindcare-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: mindcare-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: mindcare-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: mindcare-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: mindcare-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: APP_CORS_ALLOWED_ORIGINS
+        sync: false
+
+databases:
+  - name: mindcare-db
+    plan: free
+    region: singapore
+    databaseName: mindcare
+    user: mindcare_user
+    postgresMajorVersion: "16"

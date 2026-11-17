@@ -26,15 +26,18 @@ public class AuthController {
   private final UserPreferenceRepository preferenceRepository;
   private final UserCredentialRepository credentialRepository;
   private final PasswordEncoder passwordEncoder;
+  private final JwtUtil jwtUtil;
 
   public AuthController(UserProfileRepository profileRepository,
                         UserPreferenceRepository preferenceRepository,
                         UserCredentialRepository credentialRepository,
-                        PasswordEncoder passwordEncoder) {
+                        PasswordEncoder passwordEncoder,
+                        JwtUtil jwtUtil) {
     this.profileRepository = profileRepository;
     this.preferenceRepository = preferenceRepository;
     this.credentialRepository = credentialRepository;
     this.passwordEncoder = passwordEncoder;
+    this.jwtUtil = jwtUtil;
   }
 
   public record RegisterRequest(String email, String password, String displayName, String locale, String timezone) {}
@@ -69,7 +72,7 @@ public class AuthController {
     credential.setPasswordHash(passwordEncoder.encode(req.password));
     credentialRepository.save(credential);
 
-    String token = JwtUtil.issue(userId, email, req.displayName);
+    String token = jwtUtil.issue(userId, email, req.displayName);
     return ResponseEntity.ok(new AuthResponse(token, new UserInfo(userId.toString(), email, req.displayName)));
   }
 
@@ -84,7 +87,7 @@ public class AuthController {
     UUID userId = credential.getUserId();
     UserProfile profile = profileRepository.findById(userId).orElse(null);
     String displayName = profile != null ? profile.getDisplayName() : null;
-    String token = JwtUtil.issue(userId, credential.getEmail(), displayName);
+    String token = jwtUtil.issue(userId, credential.getEmail(), displayName);
     return ResponseEntity.ok(new AuthResponse(token, new UserInfo(userId.toString(), credential.getEmail(), displayName)));
   }
 

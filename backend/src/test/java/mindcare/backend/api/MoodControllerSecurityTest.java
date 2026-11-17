@@ -41,8 +41,11 @@ class MoodControllerSecurityTest {
   @Autowired
   private UserPreferenceRepository preferenceRepository;
 
+  @Autowired
+  private JwtUtil jwtUtil;
+
   private String tokenFor(UUID userId, String email) {
-    return JwtUtil.issue(userId, email, null);
+    return jwtUtil.issue(userId, email, null);
   }
 
   private UserPreference pref(UUID userId) {
