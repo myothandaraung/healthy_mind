@@ -1,6 +1,22 @@
 const API_BASE = import.meta.env.VITE_API_BASE ?? '/api/v1'
 
 let accessToken: string | null = null
+let pendingRequests = 0
+const loadingListeners = new Set<(isLoading: boolean) => void>()
+
+function updatePendingRequests(change: number) {
+  pendingRequests = Math.max(0, pendingRequests + change)
+  const isLoading = pendingRequests > 0
+  loadingListeners.forEach((listener) => listener(isLoading))
+}
+
+export function subscribeToApiLoading(listener: (isLoading: boolean) => void) {
+  loadingListeners.add(listener)
+  listener(pendingRequests > 0)
+  return () => {
+    loadingListeners.delete(listener)
+  }
+}
 
 export function setAccessToken(token: string | null) {
   accessToken = token
@@ -31,25 +47,30 @@ async function request<T>(
   }
   if (accessToken) headers.Authorization = `Bearer ${accessToken}`
 
-  const res = await fetch(`${API_BASE}${input}`, {
-    ...init,
-    headers,
-    credentials: 'include',
-  })
+  updatePendingRequests(1)
+  try {
+    const res = await fetch(`${API_BASE}${input}`, {
+      ...init,
+      headers,
+      credentials: 'include',
+    })
 
-  if (!res.ok) {
-    let code = 'unknown'
-    let message = 'Request failed'
-    try {
-      const body = (await res.json()) as { code?: string; message?: string }
-      code = body.code ?? code
-      message = body.message ?? message
-    } catch {}
-    throw new ApiError(res.status, code, message)
+    if (!res.ok) {
+      let code = 'unknown'
+      let message = 'Request failed'
+      try {
+        const body = (await res.json()) as { code?: string; message?: string }
+        code = body.code ?? code
+        message = body.message ?? message
+      } catch {}
+      throw new ApiError(res.status, code, message)
+    }
+
+    if (res.status === 204) return undefined as T
+    return await res.json()
+  } finally {
+    updatePendingRequests(-1)
   }
-
-  if (res.status === 204) return undefined as T
-  return res.json()
 }
 
 export const api = {

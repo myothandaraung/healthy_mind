@@ -4,6 +4,7 @@ import DesktopNav from './desktop-nav'
 import MobileNav from './mobile-nav'
 import { useTranslation } from '@/i18n'
 import { ArrowLeft } from 'lucide-react'
+import ApiLoadingIndicator from '@/components/ui/api-loading-indicator'
 
 const PUBLIC_PATHS = ['/login', '/register', '/forgot-password', '/get-help', '/relax', '/wellness']
 
@@ -28,7 +29,7 @@ export default function Shell() {
   }
 
   const backButton = showBackButton ? (
-    <div className="px-4 pt-4 max-w-6xl mx-auto w-full">
+    <div className="hidden px-4 pt-4 max-w-6xl mx-auto w-full sm:block">
       <button
         type="button"
         onClick={goBack}
@@ -43,6 +44,7 @@ export default function Shell() {
 
   return (
     <div className="flex flex-col min-h-screen text-brand-slate-dark">
+      <ApiLoadingIndicator />
       {showAppNavigation ? (
         <>
           <DesktopNav />
