@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight, BarChart3, BookHeart, Flower2, HeartHandshake, ListChecks, LogOut, NotebookPen, Settings2, Sparkles } from 'lucide-react'
+import { ArrowUpRight, BarChart3, BookHeart, Flower2, HeartHandshake, ListChecks, LogOut, NotebookPen, Settings2, Sparkles, WandSparkles } from 'lucide-react'
 import { useTranslation } from '@/i18n'
 import { useAuth } from '@/features/auth'
 import { Button } from '@/components/ui/button'
@@ -13,6 +13,7 @@ export default function MorePage() {
     { to: '/journal', icon: NotebookPen, title: t('app.nav.journal'), body: t('journal.subtitle'), tone: 'bg-[#eeeaf5]' },
     { to: '/goals', icon: ListChecks, title: t('app.nav.goals'), body: t('dashboard.goalsIntro'), tone: 'bg-[#edf2e7]' },
     { to: '/relax', icon: Sparkles, title: t('app.nav.relax'), body: t('home.relaxBody'), tone: 'bg-[#f5eddc]' },
+    { to: '/manifestation', icon: WandSparkles, title: t('app.nav.manifestation'), body: t('manifestation.subtitle'), tone: 'bg-[#eeeaf5]' },
     { to: '/wellness', icon: BookHeart, title: t('app.nav.learn'), body: t('wellness.subtitle'), tone: 'bg-[#e7f0ec]' },
     { to: '/progress', icon: BarChart3, title: t('app.nav.progress'), body: t('progress.subtitle'), tone: 'bg-[#eeeaf5]' },
     { to: '/get-help', icon: HeartHandshake, title: t('app.nav.getHelp'), body: t('support.subtitle'), tone: 'bg-[#fff0ee]' },

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { BarChart3, BookHeart, Flower2, HeartHandshake, Languages, LayoutDashboard, ListChecks, LogOut, NotebookPen, Settings2, Sparkles } from 'lucide-react'
+import { BarChart3, BookHeart, Flower2, HeartHandshake, Languages, LayoutDashboard, ListChecks, LogOut, NotebookPen, Settings2, Sparkles, WandSparkles } from 'lucide-react'
 import { useAuth } from '@/features/auth'
 import { useTranslation } from '@/i18n'
 
@@ -9,6 +9,7 @@ const ITEMS = [
   { to: '/journal', key: 'app.nav.journal', icon: NotebookPen },
   { to: '/goals', key: 'app.nav.goals', icon: ListChecks },
   { to: '/relax', key: 'app.nav.relax', icon: Sparkles },
+  { to: '/manifestation', key: 'app.nav.manifestation', icon: WandSparkles },
   { to: '/wellness', key: 'app.nav.learn', icon: BookHeart },
   { to: '/progress', key: 'app.nav.progress', icon: BarChart3 },
   { to: '/language', key: 'app.nav.language', icon: Languages },

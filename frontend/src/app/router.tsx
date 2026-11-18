@@ -15,6 +15,7 @@ import { GentleGoalsPage } from '@/features/goals'
 import { ProgressPage } from '@/features/progress'
 import { MorePage } from '@/features/more'
 import { LanguagePage } from '@/features/language'
+import { ManifestationPage } from '@/features/manifestation'
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ export const router = createBrowserRouter([
       { path: 'progress', element: <ProgressPage /> },
       { path: 'more', element: <MorePage /> },
       { path: 'language', element: <LanguagePage /> },
+      { path: 'manifestation', element: <ManifestationPage /> },
     ],
   },
 ])

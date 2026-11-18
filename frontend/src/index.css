@@ -367,6 +367,35 @@ html[data-theme='night'] .journal-editor-panel button.bg-brand-slate:disabled {
   background: #1d4a4c;
 }
 
+.manifestation-hero {
+  position: relative;
+  background:
+    radial-gradient(circle at 88% 20%, rgb(221 213 241 / 75%), transparent 16rem),
+    radial-gradient(circle at 4% 100%, rgb(183 221 201 / 70%), transparent 18rem),
+    linear-gradient(135deg, rgb(247 251 247 / 92%), rgb(250 247 241 / 84%));
+  box-shadow: 0 24px 60px -40px rgb(24 51 47 / 48%);
+}
+.manifestation-hero::after {
+  content: '✦';
+  position: absolute;
+  right: 9%;
+  top: 24%;
+  color: rgb(75 139 120 / 28%);
+  font-size: 72px;
+  animation: manifestation-float 5s ease-in-out infinite;
+}
+html[data-theme='night'] .manifestation-hero {
+  border-color: var(--page-line);
+  background:
+    radial-gradient(circle at 88% 20%, rgb(104 82 160 / 34%), transparent 16rem),
+    radial-gradient(circle at 4% 100%, rgb(31 139 126 / 30%), transparent 18rem),
+    linear-gradient(135deg, rgb(13 40 49 / 94%), rgb(27 31 54 / 90%));
+}
+html[data-theme='night'] .manifestation-hero::after { color: rgb(156 221 202 / 28%); }
+html[data-theme='night'] .bg-amber-50\/65 { background-color: rgb(111 78 39 / 22%); }
+html[data-theme='night'] .border-amber-200\/60 { border-color: rgb(226 190 118 / 18%); }
+@keyframes manifestation-float { 50% { transform: translateY(-8px) rotate(8deg); opacity: .7; } }
+
 @media (max-width: 640px) {
   .ambient-sun-moon { right: -35px; top: 10%; transform: scale(.65); }
   html[data-theme='night'] .ambient-sun-moon { transform: translate(-15px,12px) scale(.48); }
