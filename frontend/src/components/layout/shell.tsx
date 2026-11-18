@@ -5,6 +5,8 @@ import MobileNav from './mobile-nav'
 import { useTranslation } from '@/i18n'
 import { ArrowLeft } from 'lucide-react'
 import ApiLoadingIndicator from '@/components/ui/api-loading-indicator'
+import AmbientBackground from './ambient-background'
+import ThemeToggle from '@/components/ui/theme-toggle'
 
 const PUBLIC_PATHS = ['/login', '/register', '/forgot-password', '/get-help', '/relax', '/wellness']
 
@@ -43,8 +45,12 @@ export default function Shell() {
   ) : null
 
   return (
-    <div className="flex flex-col min-h-screen text-brand-slate-dark">
+    <div className="app-shell flex min-h-screen flex-col text-brand-slate-dark">
+      <AmbientBackground />
       <ApiLoadingIndicator />
+      {location.pathname !== '/' && (
+        <ThemeToggle compact className="fixed right-4 top-4 z-50 sm:right-6" />
+      )}
       {showAppNavigation ? (
         <>
           <DesktopNav />

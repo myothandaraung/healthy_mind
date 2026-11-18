@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en" data-theme="day">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>MindCare — Day & Night Background Mock</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      font-family: Inter, ui-sans-serif, system-ui, "Myanmar Text", sans-serif;
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --ink: #193733;
+      --muted: #61736f;
+      --brand: #246b60;
+      --brand-strong: #185349;
+      --glass: rgba(255,255,255,.63);
+      --glass-strong: rgba(255,255,255,.82);
+      --line: rgba(24,83,73,.13);
+      --shadow: 0 30px 80px -45px rgba(23,65,58,.55);
+    }
+
+    html[data-theme="night"] {
+      --ink: #edf7f3;
+      --muted: #a9beb8;
+      --brand: #8bd3bf;
+      --brand-strong: #b4eadb;
+      --glass: rgba(16,34,48,.57);
+      --glass-strong: rgba(20,42,56,.78);
+      --line: rgba(205,235,227,.13);
+      --shadow: 0 34px 90px -42px rgba(0,0,0,.88);
+    }
+
+    body { margin: 0; min-width: 320px; color: var(--ink); background: #f7f8f4; }
+    button, select { font: inherit; }
+
+    .page {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      isolation: isolate;
+      transition: color .65s var(--ease);
+    }
+
+    .sky {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      overflow: hidden;
+      background: linear-gradient(150deg, #fffdf5 0%, #eef8f1 45%, #e9eefb 100%);
+      transition: background 1s var(--ease);
+    }
+
+    html[data-theme="night"] .sky {
+      background: linear-gradient(150deg, #071825 0%, #102d38 50%, #252642 100%);
+    }
+
+    .sky::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .23;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+    }
+
+    .sun-moon {
+      position: absolute;
+      top: 10%;
+      right: 11%;
+      width: 130px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #fff3b0;
+      box-shadow: 0 0 0 28px rgba(255,235,151,.14), 0 0 90px rgba(255,211,101,.4);
+      transition: transform 1s var(--ease), background 1s var(--ease), box-shadow 1s var(--ease);
+    }
+
+    html[data-theme="night"] .sun-moon {
+      background: #dce8ee;
+      box-shadow: inset 22px -12px 0 #b9cad3, 0 0 0 26px rgba(206,226,235,.06), 0 0 72px rgba(190,220,235,.2);
+      transform: translate(-20px, 18px) scale(.72);
+    }
+
+    .stars { position: absolute; inset: 0; opacity: 0; transition: opacity .8s var(--ease); }
+    .stars::before, .stars::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 8vw 12vh white, 19vw 23vh #c9e8e1, 31vw 9vh white, 45vw 19vh white,
+                  59vw 8vh #c9e8e1, 72vw 26vh white, 88vw 12vh white, 94vw 32vh #c9e8e1,
+                  12vw 44vh white, 40vw 38vh #c9e8e1, 68vw 46vh white, 84vw 55vh white;
+    }
+    .stars::after { transform: translate(4vw, 7vh) scale(.65); opacity: .65; }
+    html[data-theme="night"] .stars { opacity: .74; }
+
+    .aurora {
+      position: absolute;
+      width: 62vw;
+      height: 62vw;
+      border-radius: 50%;
+      filter: blur(7px);
+      opacity: .62;
+      transition: all 1s var(--ease);
+    }
+    .aurora.a { left: -27vw; top: -33vw; background: radial-gradient(circle at 70% 70%, #b9ddc9, transparent 65%); }
+    .aurora.b { right: -31vw; bottom: -38vw; background: radial-gradient(circle at 30% 28%, #ddd5f1, transparent 64%); }
+    html[data-theme="night"] .aurora.a { background: radial-gradient(circle at 70% 70%, rgba(31,139,126,.68), transparent 66%); }
+    html[data-theme="night"] .aurora.b { background: radial-gradient(circle at 30% 28%, rgba(104,82,160,.6), transparent 65%); }
+
+    .landscape { position: fixed; inset: auto 0 0; z-index: -2; height: 32vh; min-height: 220px; pointer-events: none; }
+    .hill { position: absolute; bottom: -44%; width: 72%; height: 115%; border-radius: 50% 50% 0 0; transition: background 1s var(--ease); }
+    .hill.one { left: -12%; background: rgba(155,198,177,.5); transform: rotate(5deg); }
+    .hill.two { right: -19%; background: rgba(190,205,194,.55); transform: rotate(-5deg); }
+    html[data-theme="night"] .hill.one { background: rgba(21,74,75,.73); }
+    html[data-theme="night"] .hill.two { background: rgba(37,57,76,.86); }
+
+    .container { width: min(1120px, calc(100% - 36px)); margin: auto; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+    .brand { display: flex; align-items: center; gap: 11px; font-size: 20px; font-weight: 780; letter-spacing: -.02em; }
+    .logo { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 15px; color: white; background: #246b60; box-shadow: 0 14px 30px -18px #123b35; }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    select, .theme-toggle {
+      min-height: 43px;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+    }
+    select { padding: 0 13px; border-radius: 13px; }
+    .theme-toggle { display: flex; align-items: center; gap: 9px; padding: 5px 7px 5px 12px; border-radius: 999px; cursor: pointer; }
+    .toggle-label { font-size: 13px; font-weight: 720; }
+    .toggle-track { position: relative; width: 48px; height: 30px; border-radius: 99px; background: rgba(36,107,96,.17); }
+    .toggle-thumb { position: absolute; top: 4px; left: 4px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #765d21; background: #fff2ae; font-size: 12px; transition: transform .55s var(--ease), background .55s var(--ease); }
+    html[data-theme="night"] .toggle-thumb { transform: translateX(18px); color: #27414e; background: #e0edf1; }
+
+    main { display: grid; grid-template-columns: 1.06fr .94fr; align-items: center; gap: 72px; min-height: calc(100svh - 84px); padding: 34px 0 96px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px; color: var(--brand); background: var(--glass); backdrop-filter: blur(15px); font-size: 13px; font-weight: 750; }
+    h1 { max-width: 700px; margin: 21px 0 19px; font-size: clamp(48px, 6.2vw, 78px); line-height: 1.02; letter-spacing: -.058em; text-wrap: balance; }
+    .accent { color: var(--brand); }
+    .lead { max-width: 575px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.75; }
+    .actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 29px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 21px; border: 1px solid var(--line); border-radius: 14px; color: var(--brand-strong); background: var(--glass); backdrop-filter: blur(15px); font-weight: 750; text-decoration: none; }
+    .button.primary { color: white; border-color: #246b60; background: #246b60; box-shadow: 0 15px 35px -20px #123b35; }
+    html[data-theme="night"] .button.primary { color: #0a2825; border-color: #8bd3bf; background: #8bd3bf; }
+
+    .visual { position: relative; display: grid; place-items: center; min-height: 500px; }
+    .orbit { position: absolute; width: 430px; max-width: 96%; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; box-shadow: 0 0 0 35px rgba(126,176,159,.05), 0 0 0 70px rgba(126,176,159,.03); }
+    .card { position: relative; width: min(390px, 88%); padding: 27px; border: 1px solid rgba(255,255,255,.55); border-radius: 36px; background: var(--glass); box-shadow: var(--shadow); backdrop-filter: blur(24px); transform: rotate(2deg); }
+    .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+    .card-title { font-weight: 780; }
+    .status { padding: 7px 10px; border-radius: 99px; color: var(--brand-strong); background: rgba(139,211,191,.2); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+    .mood { display: grid; place-items: center; width: 130px; aspect-ratio: 1; margin: 0 auto 28px; border-radius: 43% 57% 61% 39% / 50% 39% 61% 50%; background: linear-gradient(145deg, rgba(169,211,193,.8), rgba(220,214,241,.8)); font-size: 50px; animation: float 5s ease-in-out infinite; }
+    html[data-theme="night"] .mood { background: linear-gradient(145deg, rgba(48,133,121,.62), rgba(93,76,139,.62)); }
+    .prompt { padding: 17px; border-radius: 20px; background: var(--glass-strong); }
+    .prompt strong { display: block; margin-bottom: 6px; }
+    .prompt span { color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .theme-note { position: fixed; right: 18px; bottom: 17px; color: var(--muted); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+
+    @keyframes float { 50% { transform: translateY(-9px) rotate(-3deg); } }
+
+    @media (max-width: 800px) {
+      .container { width: min(100% - 28px, 620px); }
+      header { padding: 14px 0; }
+      .brand { font-size: 18px; }
+      .logo { width: 40px; height: 40px; }
+      select { display: none; }
+      .toggle-label { display: none; }
+      .theme-toggle { padding-left: 7px; }
+      main { grid-template-columns: 1fr; gap: 42px; min-height: auto; padding: 50px 0 100px; }
+      h1 { font-size: clamp(43px, 13vw, 61px); line-height: 1.06; }
+      .lead { font-size: 15px; }
+      .actions { display: grid; }
+      .button { width: 100%; }
+      .visual { min-height: 400px; }
+      .card { padding: 22px; border-radius: 30px; }
+      .sun-moon { top: 13%; right: -20px; transform: scale(.65); }
+      html[data-theme="night"] .sun-moon { transform: translate(-20px,18px) scale(.5); }
+      .theme-note { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="sky" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="sun-moon"></div>
+      <div class="aurora a"></div>
+      <div class="aurora b"></div>
+    </div>
+    <div class="landscape" aria-hidden="true"><div class="hill one"></div><div class="hill two"></div></div>
+
+    <header class="container">
+      <div class="brand"><span class="logo">♡</span><span>MindCare</span></div>
+      <div class="header-actions">
+        <select aria-label="Language"><option>English</option><option>မြန်မာ</option><option>日本語</option></select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
+          <span class="toggle-label" id="themeLabel">Day mode</span>
+          <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb">☀</span></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section>
+        <div class="eyebrow">✦ A calm moment for yourself</div>
+        <h1>A gentler space for your <span class="accent">everyday mind.</span></h1>
+        <p class="lead">Notice how you feel, reflect without pressure, and build small habits that support your wellbeing—one quiet moment at a time.</p>
+        <div class="actions">
+          <a class="button primary" href="#">Begin your check-in →</a>
+          <a class="button" href="#">Explore activities</a>
+        </div>
+      </section>
+
+      <section class="visual" aria-label="Daily check-in preview">
+        <div class="orbit" aria-hidden="true"></div>
+        <article class="card">
+          <div class="card-top"><span class="card-title">Today’s check-in</span><span class="status">2 min</span></div>
+          <div class="mood" aria-hidden="true">☺</div>
+          <div class="prompt"><strong>How are you feeling?</strong><span>Pause, breathe, and choose the feeling that is closest to you right now.</span></div>
+        </article>
+      </section>
+    </main>
+
+    <div class="theme-note">Interactive HTML concept · Day / Night</div>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.querySelector('#themeToggle');
+    const label = document.querySelector('#themeLabel');
+    const thumb = document.querySelector('.toggle-thumb');
+    const savedTheme = localStorage.getItem('mindcare-mock-theme');
+    const preferredTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day';
+
+    function applyTheme(theme) {
+      const isNight = theme === 'night';
+      root.dataset.theme = theme;
+      label.textContent = isNight ? 'Night mode' : 'Day mode';
+      thumb.textContent = isNight ? '☾' : '☀';
+      toggle.setAttribute('aria-pressed', String(isNight));
+      toggle.setAttribute('aria-label', `Switch to ${isNight ? 'day' : 'night'} mode`);
+      localStorage.setItem('mindcare-mock-theme', theme);
+    }
+
+    applyTheme(savedTheme || preferredTheme);
+    toggle.addEventListener('click', () => applyTheme(root.dataset.theme === 'day' ? 'night' : 'day'));
+  </script>
+</body>
+</html>

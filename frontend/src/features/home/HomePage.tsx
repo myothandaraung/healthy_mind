@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card'
 import { useTranslation } from '@/i18n'
 import i18n, { LOCALES, LOCALE_NATIVE_LABELS, type Locale } from '@/i18n'
 import hero from '@/assets/hero.png'
+import ThemeToggle from '@/components/ui/theme-toggle'
 
 export default function HomePage() {
   const { t } = useTranslation()
@@ -21,12 +22,16 @@ export default function HomePage() {
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-brand-slate text-white shadow-lg sm:h-11 sm:w-11"><HeartHandshake size={21} /></span>
           <span className="text-lg font-semibold tracking-tight min-[380px]:text-xl">MindCare</span>
         </Link>
-        <label className="flex min-w-0 items-center gap-2 text-sm text-brand-slate">
-          <span className="hidden sm:inline">{t('common.language')}</span>
-          <select aria-label={t('common.language')} value={i18n.resolvedLanguage ?? 'en'} onChange={(event) => i18n.changeLanguage(event.target.value)} className="min-h-10 max-w-[118px] rounded-button border border-brand-sage/40 bg-white/80 px-2 py-2 text-xs shadow-sm backdrop-blur sm:max-w-none sm:px-3 sm:text-sm">
-            {LOCALES.map((locale) => <option key={locale} value={locale}>{LOCALE_NATIVE_LABELS[locale as Locale]}</option>)}
-          </select>
-        </label>
+        <div className="flex min-w-0 items-center gap-2">
+          <label className="flex min-w-0 items-center gap-2 text-sm text-brand-slate">
+            <span className="hidden sm:inline">{t('common.language')}</span>
+            <select aria-label={t('common.language')} value={i18n.resolvedLanguage ?? 'en'} onChange={(event) => i18n.changeLanguage(event.target.value)} className="min-h-10 max-w-[108px] rounded-button border border-brand-sage/40 bg-white/80 px-2 py-2 text-xs shadow-sm backdrop-blur sm:max-w-none sm:px-3 sm:text-sm">
+              {LOCALES.map((locale) => <option key={locale} value={locale}>{LOCALE_NATIVE_LABELS[locale as Locale]}</option>)}
+            </select>
+          </label>
+          <ThemeToggle compact className="sm:hidden" />
+          {/* <ThemeToggle className="hidden sm:flex" /> */}
+        </div>
       </header>
 
       <main>

@@ -159,16 +159,16 @@ export default function JournalPage() {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-brand-slate-dark/40 px-2 pb-2 pt-6 backdrop-blur-sm sm:px-4 sm:pb-4 sm:pt-8"
+          className="journal-editor-backdrop fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-brand-slate-dark/40 px-2 pb-2 pt-6 backdrop-blur-sm sm:px-4 sm:pb-4 sm:pt-8"
           onMouseDown={(event) => { if (event.target === event.currentTarget) closeEditor() }}
         >
           <Card
-            className="flex max-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col overflow-hidden p-0 shadow-[0_24px_70px_-28px_rgba(16,43,39,.65)] sm:max-h-[calc(100dvh-3rem)]"
+            className="journal-editor-panel flex max-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col overflow-hidden p-0 shadow-[0_24px_70px_-28px_rgba(16,43,39,.65)] sm:max-h-[calc(100dvh-3rem)]"
             role="dialog"
             aria-modal="true"
             aria-labelledby="journal-editor-title"
           >
-            <div className="flex items-center justify-between border-b border-brand-sage/25 px-4 py-3 sm:px-5">
+            <div className="journal-editor-header flex items-center justify-between border-b border-brand-sage/25 px-4 py-3 sm:px-5">
               <div>
                 <h3 id="journal-editor-title" className="text-lg font-semibold">{t('journal.editor')}</h3>
                 <p className="mt-0.5 text-xs text-gray-600">{t('journal.subtitle')}</p>
@@ -178,7 +178,7 @@ export default function JournalPage() {
               </button>
             </div>
             <form className="flex min-h-0 flex-1 flex-col" onSubmit={(e) => { e.preventDefault(); setSubmitting(true); const payload = { title: title || null, body, tags: tags.split(',').map((t) => t.trim()).filter(Boolean) }; editingId ? updateMutation.mutate({ id: editingId, body: payload }) : createMutation.mutate(payload) }}>
-              <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-4 sm:px-5">
+              <div className="journal-editor-content min-h-0 flex-1 space-y-4 overflow-y-auto px-4 py-4 sm:px-5">
                 <Input autoFocus label={t('journal.titleLabel')} value={title} onChange={(e) => setTitle(e.target.value)} />
                 <div>
                   <div className="mb-2 flex flex-wrap gap-1.5" aria-label={t('journal.writingTools')}>
@@ -207,7 +207,7 @@ export default function JournalPage() {
                 <Input label={t('journal.tagsLabel')} placeholder={t('journal.tagsPlaceholder')} value={tags} onChange={(e) => setTags(e.target.value)} />
                 {(createMutation.isError || updateMutation.isError) && <p className="text-sm text-red-600" role="alert">{t('errors.validation')}</p>}
               </div>
-              <div className="flex justify-end gap-2 border-t border-brand-sage/25 bg-white/80 px-4 py-3 sm:px-5">
+              <div className="journal-editor-footer flex justify-end gap-2 border-t border-brand-sage/25 bg-white/80 px-4 py-3 sm:px-5">
                 <Button type="button" variant="ghost" disabled={submitting} onClick={closeEditor}>{t('common.cancel')}</Button>
                 <Button type="submit" disabled={submitting || !body.trim()}>{submitting ? t('common.loading') : t('journal.save')}</Button>
               </div>
