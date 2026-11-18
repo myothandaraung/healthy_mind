@@ -185,6 +185,13 @@ export default {
     privateNote: 'Your practice stays on this device.',
     save: 'Save practice',
     saved: 'Practice saved on this device.',
+    guided: {
+      eyebrow: 'Optional guided practice', title: 'Deepen the intention', intro: 'Use any section that feels helpful. You do not need to complete them all.', clear: 'Clear guided practice', clearConfirm: 'Clear gratitude, affirmation, obstacle plan, and reflection? Your intention, visualization, and actions will remain.',
+      gratitudeTitle: 'Notice what supports you', gratitudeHelp: 'Add up to three things you appreciate right now.', gratitudePlaceholder: 'Something I appreciate...', addGratitude: 'Add', removeGratitude: 'Remove gratitude entry', gratitudeCount: '{{count}} of 3 added',
+      affirmationTitle: 'Write a realistic affirmation', affirmationHelp: 'Choose supportive words that acknowledge your current reality.', affirmationLabel: 'A grounded statement I can return to', affirmationPlaceholder: 'For example: I can take one small step without having every answer.',
+      obstacleTitle: 'Plan for an obstacle', obstacleHelp: 'Prepare a kind, practical response to something that may get in the way.', obstacleLabel: 'What might make this difficult?', obstaclePlaceholder: 'A likely obstacle...', ifThenLabel: 'My if–then plan', ifThenPlaceholder: 'If this happens, then I will...',
+      reflectionTitle: 'Reflect without judgment', reflectionHelp: 'Notice what helped and what you may adjust next time.', reflectionLabel: 'What helped, what did I learn, and what might I change?', reflectionPlaceholder: 'A brief end-of-day reflection...',
+    },
   },
   dashboard: {
     quickActions: 'Quick actions',

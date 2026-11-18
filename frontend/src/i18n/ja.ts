@@ -181,6 +181,13 @@ export default {
     privateNote: 'この実践内容はこの端末にのみ保存されます。',
     save: '実践内容を保存',
     saved: 'この端末に保存しました。',
+    guided: {
+      eyebrow: '任意のガイド付き練習', title: '意図を深める', intro: '役立ちそうな項目だけ使ってください。すべてを終える必要はありません。', clear: 'ガイド付き練習を消去', clearConfirm: '感謝、アファメーション、障害への計画、振り返りを消去しますか？意図、イメージ、行動は残ります。',
+      gratitudeTitle: '支えになっていることに気づく', gratitudeHelp: '今ありがたいと感じることを3つまで追加します。', gratitudePlaceholder: 'ありがたいと感じること…', addGratitude: '追加', removeGratitude: '感謝の項目を削除', gratitudeCount: '3件中{{count}}件を追加済み',
+      affirmationTitle: '現実的なアファメーションを書く', affirmationHelp: '今の現実を認めながら、自分を支える言葉を選びます。', affirmationLabel: '繰り返し思い出したい現実的な言葉', affirmationPlaceholder: '例：すべての答えがなくても、小さな一歩を踏み出せる。',
+      obstacleTitle: '障害に備える', obstacleHelp: '妨げになりそうなことに対して、優しく実用的な対応を準備します。', obstacleLabel: '何が難しさにつながりそうですか？', obstaclePlaceholder: '起こりそうな障害…', ifThenLabel: 'もし〜なら、そのときの計画', ifThenPlaceholder: 'もしこれが起きたら、私は…',
+      reflectionTitle: '判断せずに振り返る', reflectionHelp: '役立ったことと、次回調整したいことに気づきます。', reflectionLabel: '何が役立ち、何を学び、何を変えたいですか？', reflectionPlaceholder: '一日の終わりの短い振り返り…',
+    },
   },
   bodyRelease: {
     title: '体の力を抜く', heading: '全身を優しくゆるめる', intro: 'ゆっくり順番に進めます。無理に伸ばしたり息を止めたりせず、それぞれの部分をゆるめましょう。', safety: '心地よい範囲で行ってください。痛み、めまい、しびれ、不快感がある動きは飛ばしてください。', markStep: '体をゆるめるステップ{{step}}を完了にする', complete: '完了しました。少し立ち止まり、体に変化があるか気づいてみましょう。', reset: 'ステップをリセット',
