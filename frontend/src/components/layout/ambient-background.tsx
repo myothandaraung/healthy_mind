@@ -7,6 +7,7 @@ export default function AmbientBackground() {
       <div className="ambient-ribbon ambient-ribbon--one" />
       <div className="ambient-ribbon ambient-ribbon--two" />
       <div className="ambient-ribbon ambient-ribbon--three" />
+      <div className="ambient-breathe" />
       <div className="ambient-particles" />
     </div>
   )
