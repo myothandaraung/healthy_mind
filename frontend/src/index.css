@@ -116,6 +116,44 @@ html[data-theme='night'] .ambient-particles { opacity: .7; }
 .theme-toggle__thumb { position: absolute; left: 4px; top: 3px; display: grid; width: 22px; height: 22px; place-items: center; border-radius: 50%; color: #765d21; background: #fff2ae; transition: transform 450ms cubic-bezier(.2,.8,.2,1), background 450ms ease; }
 html[data-theme='night'] .theme-toggle__thumb { color: #27414e; background: #e0edf1; transform: translateX(16px); }
 
+.home-bloom { overflow: hidden; border: 1px solid rgb(46 105 91 / 15%); border-radius: 2.5rem 2.5rem 1.25rem 1.25rem; background: #fbfdfb; box-shadow: 0 35px 90px -50px rgb(19 60 51 / 66%); }
+.home-bloom__stage { position: relative; display: grid; min-height: 22rem; place-items: center; overflow: hidden; background: #e4f1ec; }
+.home-bloom__stage::before, .home-bloom__stage::after { content: ''; position: absolute; border: 1px solid rgb(46 105 91 / 13%); border-radius: 50%; }
+.home-bloom__stage::before { width: 25rem; aspect-ratio: 1; }
+.home-bloom__stage::after { width: 18rem; aspect-ratio: 1; }
+.home-bloom__flower { position: relative; z-index: 2; width: 14rem; aspect-ratio: 1; }
+.home-bloom__petal { --angle: 0deg; position: absolute; left: 50%; top: 50%; width: 4.8rem; height: 7.5rem; margin: -6.5rem 0 0 -2.4rem; border-radius: 55% 55% 48% 48% / 70% 70% 35% 35%; background: #acd7c8; box-shadow: inset 0 1px rgb(255 255 255 / 35%); transform-origin: 50% 88%; animation: home-bloom-open 8s cubic-bezier(.45, 0, .22, 1) infinite alternate; }
+.home-bloom__petal:nth-child(2) { --angle: 60deg; background: #d8d0ec; animation-delay: -.7s; }
+.home-bloom__petal:nth-child(3) { --angle: 120deg; background: #edc7b5; animation-delay: -1.4s; }
+.home-bloom__petal:nth-child(4) { --angle: 180deg; animation-delay: -2.1s; }
+.home-bloom__petal:nth-child(5) { --angle: 240deg; background: #d8d0ec; animation-delay: -2.8s; }
+.home-bloom__petal:nth-child(6) { --angle: 300deg; background: #edc7b5; animation-delay: -3.5s; }
+.home-bloom__center { position: absolute; left: 50%; top: 50%; z-index: 3; display: grid; width: 5rem; aspect-ratio: 1; translate: -50% -50%; place-items: center; padding: .35rem; border: .6rem solid rgb(251 253 251 / 85%); border-radius: 50%; color: #5a4c21; background: #f3d67f; font-size: .68rem; font-weight: 900; text-align: center; animation: home-bloom-breathe 8s ease-in-out infinite; }
+.home-bloom__phase { position: absolute; inset: 0; display: grid; place-items: center; padding: .35rem; line-height: 1.2; }
+.home-bloom__phase--in { animation: home-bloom-label-in 8s ease-in-out infinite; }
+.home-bloom__phase--out { animation: home-bloom-label-out 8s ease-in-out infinite; }
+.home-bloom__stage-label { position: absolute; z-index: 3; bottom: 1.1rem; color: #657a74; font-size: .72rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.home-bloom__content { padding: 1.6rem 1.6rem 1.8rem; text-align: center; }
+.home-bloom__eyebrow { margin: 0; color: #4d8f7f; font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.home-bloom__content h2 { margin: .7rem auto 0; font-size: clamp(1.35rem, 4vw, 1.8rem); font-weight: 650; line-height: 1.35; }
+.home-bloom__lead { margin: .75rem auto 0; color: #657a74; font-size: .9rem; line-height: 1.7; }
+.home-bloom__actions { display: flex; justify-content: center; gap: .65rem; margin-top: 1.25rem; }
+html[data-theme='night'] .home-bloom { border-color: rgb(188 231 219 / 14%); background: #102c37; box-shadow: 0 40px 100px -48px rgb(0 0 0 / 94%); }
+html[data-theme='night'] .home-bloom__stage { background: #193f40; }
+html[data-theme='night'] .home-bloom__stage::before, html[data-theme='night'] .home-bloom__stage::after { border-color: rgb(188 231 219 / 12%); }
+html[data-theme='night'] .home-bloom__petal { background: #356f63; }
+html[data-theme='night'] .home-bloom__petal:nth-child(2), html[data-theme='night'] .home-bloom__petal:nth-child(5) { background: #5c527d; }
+html[data-theme='night'] .home-bloom__petal:nth-child(3), html[data-theme='night'] .home-bloom__petal:nth-child(6) { background: #805b53; }
+html[data-theme='night'] .home-bloom__center { color: #231d0b; border-color: rgb(16 44 55 / 82%); background: #c9ae62; }
+html[data-theme='night'] .home-bloom__stage-label, html[data-theme='night'] .home-bloom__lead { color: #a6bcb6; }
+html[data-theme='night'] .home-bloom__eyebrow { color: #7dcab5; }
+@keyframes home-bloom-open { from { opacity: .65; transform: rotate(var(--angle)) translateY(.8rem) scale(.72, .58); } to { opacity: 1; transform: rotate(var(--angle)) translateY(-.45rem) scale(1); } }
+@keyframes home-bloom-breathe { 0%, 100% { scale: .94; } 45% { scale: 1.08; } 55% { scale: 1.08; } }
+@keyframes home-bloom-label-in { 0%, 38% { opacity: 1; transform: translateY(0); } 48%, 94% { opacity: 0; transform: translateY(-.2rem); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes home-bloom-label-out { 0%, 44% { opacity: 0; transform: translateY(.2rem); } 54%, 90% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(.2rem); } }
+@media (max-width: 420px) { .home-bloom { border-radius: 2rem 2rem 1rem 1rem; } .home-bloom__stage { min-height: 19rem; } .home-bloom__flower { scale: .82; } .home-bloom__content { padding-inline: 1.15rem; } .home-bloom__actions { flex-direction: column; } }
+@media (prefers-reduced-motion: reduce) { .home-bloom__petal, .home-bloom__center, .home-bloom__phase { animation: none; } .home-bloom__petal { transform: rotate(var(--angle)) translateY(-.45rem); } .home-bloom__center { align-content: center; gap: .15rem; } .home-bloom__phase { position: static; padding: 0; opacity: 1; font-size: .56rem; } }
+
 .desktop-sidebar {
   border-right: 1px solid rgb(255 255 255 / 62%);
   background:

@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, BookHeart, Flower2, HeartHandshake, Sparkles } from 'lucide-react'
+import { ArrowRight, Flower2, HeartHandshake, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useTranslation } from '@/i18n'
 import i18n, { LOCALES, LOCALE_NATIVE_LABELS, type Locale } from '@/i18n'
-import hero from '@/assets/hero.png'
 import ThemeToggle from '@/components/ui/theme-toggle'
 
 export default function HomePage() {
@@ -46,12 +45,26 @@ export default function HomePage() {
               <Button variant="ghost" asChild size="lg" className="w-full sm:w-auto"><Link to="/login">{t('auth.login')}</Link></Button>
             </div>
           </div>
-          <div className="relative mx-auto w-[calc(100%-12px)] max-w-lg sm:w-full">
-            <div className="absolute -inset-3 rounded-[30px] bg-gradient-to-br from-brand-lavender/65 to-brand-sage/50 blur-2xl sm:-inset-5 sm:rounded-[40px]" />
-            <div className="relative overflow-hidden rounded-[28px] border border-white/80 bg-white/75 p-2 shadow-[0_35px_80px_-35px_rgba(35,51,46,0.5)] sm:rounded-[36px] sm:p-3">
-              <img src={hero} alt="" className="aspect-[4/4.25] w-full rounded-[22px] object-cover sm:aspect-[4/4.4] sm:rounded-[28px]" />
-              <div className="absolute bottom-4 left-4 right-4 rounded-[18px] border border-white/80 bg-white/90 p-3 shadow-xl backdrop-blur-md sm:bottom-7 sm:left-7 sm:right-7 sm:rounded-[22px] sm:p-5">
-                <div className="flex items-center gap-3"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-lavender sm:h-10 sm:w-10"><BookHeart size={18} /></span><div className="min-w-0"><p className="text-sm font-semibold sm:text-base">{t('wellness.title')}</p><p className="line-clamp-2 text-xs leading-5 text-gray-600 sm:text-sm">{t('wellness.habitsIntro')}</p></div></div>
+          <div className="home-bloom mx-auto w-[calc(100%-12px)] max-w-lg sm:w-full">
+            <div className="home-bloom__stage" aria-hidden="true">
+              <div className="home-bloom__flower">
+                <span className="home-bloom__petal" /><span className="home-bloom__petal" />
+                <span className="home-bloom__petal" /><span className="home-bloom__petal" />
+                <span className="home-bloom__petal" /><span className="home-bloom__petal" />
+                <span className="home-bloom__center">
+                  <span className="home-bloom__phase home-bloom__phase--in">{t('relax.breatheIn')}</span>
+                  <span className="home-bloom__phase home-bloom__phase--out">{t('relax.breatheOut')}</span>
+                </span>
+              </div>
+              <span className="home-bloom__stage-label">MindCare</span>
+            </div>
+            <div className="home-bloom__content">
+              <p className="home-bloom__eyebrow">{t('wellness.eyebrow')}</p>
+              <h2>{t('wellness.habitsTitle')}</h2>
+              <p className="home-bloom__lead">{t('wellness.habitsIntro')}</p>
+              <div className="home-bloom__actions">
+                <Button asChild><Link to="/relax">{t('relax.start')}</Link></Button>
+                <Button asChild variant="outline"><Link to="/wellness">{t('wellness.explore')}</Link></Button>
               </div>
             </div>
           </div>
