@@ -29,7 +29,7 @@ body {
   background-color: var(--color-brand-offwhite);
   color: var(--color-brand-slate-dark);
   min-width: 320px;
-  background-image: linear-gradient(150deg, #fffdf5 0%, #eef8f1 45%, #e9eefb 100%);
+  background-image: linear-gradient(145deg, #fffdf4 0%, #eef8f2 43%, #ececfa 100%);
   background-attachment: fixed;
   transition: color 500ms ease, background-color 700ms ease;
 }
@@ -45,7 +45,7 @@ html[data-theme='night'] {
 html[data-theme='night'] body {
   color: var(--page-ink);
   background-color: #071825;
-  background-image: linear-gradient(150deg, #071825 0%, #102d38 50%, #252642 100%);
+  background-image: linear-gradient(145deg, #061724 0%, #0d2a36 48%, #27233f 100%);
 }
 
 .app-shell { position: relative; isolation: isolate; color: var(--page-ink); }
@@ -67,48 +67,34 @@ html[data-theme='night'] body {
   mix-blend-mode: soft-light;
 }
 
-.ambient-sun-moon {
-  position: absolute;
-  right: 8%;
-  top: 8%;
-  width: 108px;
-  aspect-ratio: 1;
-  border-radius: 999px;
-  background: #fff2aa;
-  box-shadow: 0 0 0 25px rgb(255 235 151 / 12%), 0 0 85px rgb(255 211 101 / 35%);
-  transition: all 900ms cubic-bezier(.2,.8,.2,1);
-}
+.ambient-light { position: absolute; border-radius: 50%; filter: blur(10px); opacity: .7; will-change: transform; }
+.ambient-light--one { left: -18rem; top: -20rem; width: 42rem; height: 42rem; background: radial-gradient(circle at 65% 68%, #a9d8c4, transparent 66%); animation: ambient-drift-one 18s ease-in-out infinite alternate; }
+.ambient-light--two { right: -22rem; top: -18rem; width: 46rem; height: 46rem; background: radial-gradient(circle at 30% 65%, #ddd5f2, transparent 65%); animation: ambient-drift-two 23s ease-in-out -7s infinite alternate; }
+.ambient-light--three { left: 28%; bottom: -28rem; width: 42rem; height: 42rem; background: radial-gradient(circle at 50% 25%, #f3cfbd, transparent 64%); animation: ambient-drift-three 21s ease-in-out -4s infinite alternate; }
+html[data-theme='night'] .ambient-light--one { background: radial-gradient(circle at 65% 68%, rgb(34 145 129 / 66%), transparent 66%); }
+html[data-theme='night'] .ambient-light--two { background: radial-gradient(circle at 30% 65%, rgb(103 77 158 / 62%), transparent 65%); }
+html[data-theme='night'] .ambient-light--three { background: radial-gradient(circle at 50% 25%, rgb(193 101 92 / 25%), transparent 64%); }
 
-html[data-theme='night'] .ambient-sun-moon {
-  background: #dce8ee;
-  box-shadow: inset 18px -10px 0 #b9cad3, 0 0 0 23px rgb(206 226 235 / 5%), 0 0 65px rgb(190 220 235 / 18%);
-  transform: translate(-15px, 12px) scale(.68);
-}
+.ambient-ribbon { position: absolute; left: -15%; width: 130%; height: 220px; border: 1px solid transparent; border-radius: 50%; will-change: transform; }
+.ambient-ribbon--one { top: 24%; background: linear-gradient(100deg, transparent 8%, rgb(152 206 185 / 24%) 35%, rgb(218 211 240 / 28%) 68%, transparent 92%); transform: rotate(-7deg); animation: ambient-ribbon-one 15s ease-in-out infinite alternate; }
+.ambient-ribbon--two { top: 48%; background: linear-gradient(100deg, transparent 5%, rgb(241 201 181 / 23%) 32%, rgb(150 203 184 / 22%) 70%, transparent 94%); transform: rotate(6deg); animation: ambient-ribbon-two 19s ease-in-out -5s infinite alternate; }
+.ambient-ribbon--three { top: 67%; height: 160px; border-color: rgb(68 133 115 / 8%); transform: rotate(-3deg); animation: ambient-ribbon-three 17s ease-in-out -9s infinite alternate; }
+html[data-theme='night'] .ambient-ribbon--one { background: linear-gradient(100deg, transparent 8%, rgb(42 156 138 / 16%) 35%, rgb(109 81 163 / 21%) 68%, transparent 92%); }
+html[data-theme='night'] .ambient-ribbon--two { background: linear-gradient(100deg, transparent 5%, rgb(202 113 96 / 10%) 32%, rgb(44 148 134 / 15%) 70%, transparent 94%); }
+html[data-theme='night'] .ambient-ribbon--three { border-color: rgb(151 220 201 / 8%); }
 
-.ambient-stars { position: absolute; inset: 0; opacity: 0; transition: opacity 700ms ease; }
-.ambient-stars::before, .ambient-stars::after {
-  content: '';
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: white;
-  box-shadow: 8vw 12vh white, 19vw 23vh #c9e8e1, 31vw 9vh white, 45vw 19vh white, 59vw 8vh #c9e8e1, 72vw 26vh white, 88vw 12vh white, 94vw 32vh #c9e8e1, 12vw 44vh white, 40vw 38vh #c9e8e1, 68vw 46vh white, 84vw 55vh white;
-}
-.ambient-stars::after { opacity: .6; transform: translate(4vw,7vh) scale(.65); }
-html[data-theme='night'] .ambient-stars { opacity: .72; }
+.ambient-particles { position: absolute; inset: 0; opacity: .38; transition: opacity 700ms ease; }
+.ambient-particles::before, .ambient-particles::after { content: ''; position: absolute; width: 5px; height: 5px; border-radius: 50%; background: white; box-shadow: 8vw 18vh 0 -1px #75ad9e, 17vw 37vh 0 -2px #a99dcc, 28vw 13vh 0 -1px white, 39vw 66vh 0 -2px #e7ac91, 52vw 28vh 0 -1px #8ebdad, 63vw 76vh 0 -2px white, 75vw 15vh 0 -1px #b2a8d5, 86vw 54vh 0 -2px #7bb09f, 94vw 24vh 0 -1px white; animation: ambient-particles-rise 26s linear infinite; }
+.ambient-particles::after { transform: translate(5vw,12vh) scale(.62); animation-duration: 34s; animation-delay: -14s; }
+html[data-theme='night'] .ambient-particles { opacity: .7; }
 
-.ambient-orb { position: absolute; width: 58vw; height: 58vw; border-radius: 50%; filter: blur(8px); opacity: .6; transition: background 800ms ease; }
-.ambient-orb--one { left: -27vw; top: -32vw; background: radial-gradient(circle at 70% 70%, #b9ddc9, transparent 65%); }
-.ambient-orb--two { right: -30vw; bottom: -39vw; background: radial-gradient(circle at 30% 28%, #ddd5f1, transparent 64%); }
-html[data-theme='night'] .ambient-orb--one { background: radial-gradient(circle at 70% 70%, rgb(31 139 126 / 66%), transparent 66%); }
-html[data-theme='night'] .ambient-orb--two { background: radial-gradient(circle at 30% 28%, rgb(104 82 160 / 58%), transparent 65%); }
-
-.ambient-hill { position: absolute; bottom: -22vh; width: 72%; height: 42vh; min-height: 260px; border-radius: 50% 50% 0 0; transition: background 800ms ease; }
-.ambient-hill--one { left: -12%; background: rgb(155 198 177 / 38%); transform: rotate(5deg); }
-.ambient-hill--two { right: -19%; background: rgb(190 205 194 / 42%); transform: rotate(-5deg); }
-html[data-theme='night'] .ambient-hill--one { background: rgb(21 74 75 / 60%); }
-html[data-theme='night'] .ambient-hill--two { background: rgb(37 57 76 / 76%); }
+@keyframes ambient-drift-one { to { transform: translate3d(5vw,4vh,0) scale(1.08); } }
+@keyframes ambient-drift-two { to { transform: translate3d(-5vw,5vh,0) scale(.94); } }
+@keyframes ambient-drift-three { to { transform: translate3d(4vw,-5vh,0) scale(1.06); } }
+@keyframes ambient-ribbon-one { to { transform: translate3d(2vw,3vh,0) rotate(-4deg) scaleY(1.15); } }
+@keyframes ambient-ribbon-two { to { transform: translate3d(-3vw,-2vh,0) rotate(3deg) scaleY(.9); } }
+@keyframes ambient-ribbon-three { to { transform: translate3d(2vw,-3vh,0) rotate(-1deg); } }
+@keyframes ambient-particles-rise { from { transform: translateY(8vh); } to { transform: translateY(-12vh); } }
 
 .theme-toggle {
   display: flex;
@@ -416,9 +402,10 @@ html[data-theme='night'] .manifestation-disclosure:hover { background: rgb(139 2
 @keyframes manifestation-reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 640px) {
-  .ambient-sun-moon { right: -35px; top: 10%; transform: scale(.65); }
-  html[data-theme='night'] .ambient-sun-moon { transform: translate(-15px,12px) scale(.48); }
-  .ambient-orb { width: 110vw; height: 110vw; }
+  .ambient-ribbon { left: -30%; width: 160%; }
+  .ambient-light--one { left: -27rem; }
+  .ambient-light--two { right: -31rem; }
+  .ambient-light--three { left: 5%; }
 }
 
 h1, h2, h3 {
