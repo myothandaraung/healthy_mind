@@ -329,6 +329,21 @@ export default {
   progress: {
     eyebrow: 'A private view of your patterns', title: 'My progress', subtitle: 'Review recent check-ins gently. Trends are information, not a score or diagnosis.', averageMood: 'Average mood · 30 days', activeDays: 'Active days · 30 days', moodEntries: 'Mood check-ins · 30 days', journalEntries: 'Total journal entries', sevenDays: 'Last 7 days', chartLabel: 'Average mood level for each of the last seven days', commonEmotions: 'Common emotion tags', noEmotions: 'Add emotion tags to mood check-ins to see patterns here.', note: 'A lower number or an interrupted routine is not failure. Consider the wider context and seek qualified support if changes concern you.',
   },
+  recommendations: {
+    eyebrow: 'Reviewed resources for gentle learning',
+    title: 'Recommendations',
+    subtitle: 'Explore books, podcasts, and videos from established health organizations and qualified creators in your selected language.',
+    shortDescription: 'Browse reviewed books, podcasts, and videos for mental wellness.',
+    filterLabel: 'Filter recommendations by type',
+    categories: { all: 'All', book: 'Books & guides', podcast: 'Podcasts & audio', video: 'Videos' },
+    language: 'Language',
+    languages: { en: 'English', ja: 'Japanese', my: 'Burmese' },
+    viewResource: 'View resource',
+    empty: 'No recommendations are available for this category yet.',
+    beforeYouOpen: 'Before you open a resource',
+    privacyNotice: 'These links open third-party websites. Their privacy policies and data practices are separate from MindCare.',
+    disclaimer: 'These educational recommendations are not endorsements, diagnosis, or treatment, and they do not replace support from a qualified professional.',
+  },
   more: { title: 'More tools', subtitle: 'Explore additional care, learning, progress, support, and account options.', languageHelp: 'Choose the language used throughout MindCare.' },
   settings: {
     timezoneHelp: 'Timestamps display in your selected timezone.',

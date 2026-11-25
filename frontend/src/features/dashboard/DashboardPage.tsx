@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { formatLocal } from '@/lib/date'
 import { useNavigate } from 'react-router-dom'
-import { ArrowUpRight, BookHeart, Flower2, HeartHandshake, NotebookPen, Settings, SmilePlus, Sparkles } from 'lucide-react'
+import { ArrowUpRight, BarChart3, BookHeart, Flower2, HeartHandshake, Library, ListChecks, NotebookPen, Settings, SmilePlus, Sparkles, WandSparkles } from 'lucide-react'
 
 export default function DashboardPage() {
   const { t } = useTranslation()
@@ -32,8 +32,12 @@ export default function DashboardPage() {
   const quickActions = [
     { icon: SmilePlus, title: t('mood.title'), description: t('home.moodBody'), path: '/mood', tone: 'bg-[#e8efe6]' },
     { icon: NotebookPen, title: t('journal.title'), description: t('journal.subtitle'), path: '/journal', tone: 'bg-[#eee9f6]' },
+    { icon: ListChecks, title: t('app.nav.goals'), description: t('dashboard.goalsIntro'), path: '/goals', tone: 'bg-[#edf2e7]' },
     { icon: Flower2, title: t('relax.title'), description: t('home.relaxBody'), path: '/relax', tone: 'bg-[#f5eddc]' },
+    { icon: WandSparkles, title: t('app.nav.manifestation'), description: t('manifestation.subtitle'), path: '/manifestation', tone: 'bg-[#eeeaf5]' },
     { icon: BookHeart, title: t('wellness.title'), description: t('wellness.habitsIntro'), path: '/wellness', tone: 'bg-[#e8efe6]' },
+    { icon: Library, title: t('recommendations.title'), description: t('recommendations.shortDescription'), path: '/recommendations', tone: 'bg-[#f5eddc]' },
+    { icon: BarChart3, title: t('app.nav.progress'), description: t('progress.subtitle'), path: '/progress', tone: 'bg-[#eeeaf5]' },
     { icon: HeartHandshake, title: t('support.title'), description: t('home.helpBody'), path: '/get-help', tone: 'bg-[#f6e9e7]' },
     { icon: Settings, title: t('settings.title'), description: t('settings.profile'), path: '/settings', tone: 'bg-[#eee9f6]' },
   ]

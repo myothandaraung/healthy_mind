@@ -16,6 +16,7 @@ import { ProgressPage } from '@/features/progress'
 import { MorePage } from '@/features/more'
 import { LanguagePage } from '@/features/language'
 import { ManifestationPage } from '@/features/manifestation'
+import { RecommendationsPage } from '@/features/recommendations'
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       { path: 'more', element: <MorePage /> },
       { path: 'language', element: <LanguagePage /> },
       { path: 'manifestation', element: <ManifestationPage /> },
+      { path: 'recommendations', element: <RecommendationsPage /> },
     ],
   },
 ])

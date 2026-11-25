@@ -293,6 +293,21 @@ export default {
   progress: {
     eyebrow: '自分の傾向を確認するプライベートな画面', title: 'マイ進捗', subtitle: '最近の記録を優しく振り返ります。傾向は情報であり、点数や診断ではありません。', averageMood: '平均気分・30日間', activeDays: '記録した日・30日間', moodEntries: '気分記録・30日間', journalEntries: 'ジャーナル総数', sevenDays: '過去7日間', chartLabel: '過去7日間の各日の平均気分レベル', commonEmotions: 'よく記録した感情', noEmotions: '気分記録に感情タグを追加すると、ここで傾向を確認できます。', note: '数値が低いことや習慣が途切れることは失敗ではありません。状況全体を考え、変化が心配な場合は資格のある専門家に相談してください。',
   },
+  recommendations: {
+    eyebrow: '穏やかに学ぶための確認済みリソース',
+    title: 'おすすめリソース',
+    subtitle: '選択した言語で、信頼できる保健機関や資格を持つ制作者による本、ポッドキャスト、動画を紹介します。',
+    shortDescription: '心の健康に役立つ本、ポッドキャスト、動画を探せます。',
+    filterLabel: '種類でおすすめを絞り込む',
+    categories: { all: 'すべて', book: '本・ガイド', podcast: 'ポッドキャスト・音声', video: '動画' },
+    language: '言語',
+    languages: { en: '英語', ja: '日本語', my: 'ミャンマー語' },
+    viewResource: 'リソースを見る',
+    empty: 'この種類のおすすめはまだありません。',
+    beforeYouOpen: '外部リソースを開く前に',
+    privacyNotice: 'リンク先は第三者のウェブサイトです。各サイトのプライバシーポリシーとデータの取り扱いはMindCareとは別です。',
+    disclaimer: 'これらは学習用の情報であり、推奨・診断・治療を意味せず、資格を持つ専門家の支援に代わるものではありません。',
+  },
   more: { title: 'その他のツール', subtitle: 'ケア、学習、進捗、支援、アカウントの追加機能を確認できます。', languageHelp: 'MindCare全体で使用する言語を選択します。' },
   settings: {
     timezoneHelp: '日時は選択したタイムゾーンで表示されます。',
